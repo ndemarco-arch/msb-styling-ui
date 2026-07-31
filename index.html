@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apple Valley Styling</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#faf6f1;--card:#fffdfb;--ink:#2e2a27;--muted:#8a7f76;--rose:#c9a0a0;--rose-dk:#a87c7c;--line:#e8ded4;--good:#5f7d5f;--warn:#a8763f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.55 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;margin:0}
+a{color:var(--rose-dk)}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 80px}
+header.bar{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:26px;flex-wrap:wrap}
+header.bar h1{font-size:26px}
+.sub{color:var(--muted);font-size:13px;margin-top:4px}
+.who{font-size:13px;color:var(--muted)}
+.who button{margin-left:10px}
+button{font:inherit;font-weight:500;border-radius:8px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 15px;transition:.15s}
+button:hover:not(:disabled){border-color:var(--rose)}
+button:disabled{opacity:.5;cursor:not-allowed}
+button.primary{background:var(--rose-dk);border-color:var(--rose-dk);color:#fff}
+button.link{border:none;background:none;color:var(--rose-dk);text-decoration:underline;padding:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.login{max-width:390px;margin:9vh auto}
+.login h1{font-size:24px;margin-bottom:6px}
+label{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+input:focus{outline:none;border-color:var(--rose)}
+.controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.meter{margin-left:auto;font-size:12px;color:var(--muted);text-align:right;line-height:1.4}
+.meter b{color:var(--ink);font-weight:600}
+.track{width:150px;height:5px;background:var(--line);border-radius:3px;margin-top:5px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--rose-dk)}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:9px;margin-bottom:22px}
+.pick{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;cursor:pointer;transition:.15s}
+.pick:hover{border-color:var(--rose)}
+.pick.on{border-color:var(--rose-dk);background:#fdf7f5}
+.pick.off{opacity:.45;cursor:not-allowed}
+.pick input{width:auto;margin:3px 0 0}
+.pick .nm{font-weight:600;font-size:14px}
+.pick .mt{font-size:12px;color:var(--muted);margin-top:2px}
+.flag{display:inline-block;font-size:10.5px;color:var(--warn);border:1px solid #e8d3bb;background:#fdf6ee;border-radius:4px;padding:1px 5px;margin-top:5px}
+.report{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+.rhead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:17px;flex-wrap:wrap}
+.rhead h2{font-size:21px}
+.stats{font-size:12.5px;color:var(--muted)}
+.badge{font-size:11px;border-radius:11px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
+.badge.live{color:var(--good);border-color:#cadaca;background:#f4f8f4}
+.badge.cache{color:var(--muted);background:#f7f4f1}
+.summary{background:#fdf7f5;border-left:3px solid var(--rose);border-radius:0 8px 8px 0;padding:13px 16px;margin-bottom:20px;font-size:14px}
+.prof{display:flex;gap:22px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:20px}
+.prof b{color:var(--ink);font-weight:600}
+.look{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+.look h3{font-size:16px;margin-bottom:12px}
+.look .txt{font-size:13.5px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin:12px 0}
+.item{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.item .ph{aspect-ratio:2/3;background:#f4ece4;position:relative;overflow:hidden}
+.item .ph img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.item .ph .fb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--muted);padding:12px}
+.item .meta{padding:9px 10px;font-size:12px;flex:1;display:flex;flex-direction:column;gap:3px}
+.item .t{font-weight:600;line-height:1.3}
+.item .v{color:var(--muted)}
+.item .p{margin-top:auto;font-weight:600}
+.stk{font-size:11px;color:var(--good)}
+.msg{padding:13px 16px;border-radius:9px;font-size:13.5px;margin-bottom:14px}
+.msg.err{background:#fdf1f1;border:1px solid #eccfcf;color:#8f4a4a}
+.msg.info{background:#f7f4f1;border:1px solid var(--line);color:var(--muted)}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--rose-dk);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.hide{display:none!important}
+footer{margin-top:36px;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.7}
+</style></head><body>
+
+<div id="loginView" class="wrap">
+  <div class="login panel">
+    <h1>Apple Valley Styling</h1>
+    <div class="sub">Sign in with your Mainstream Boutique account.</div>
+    <label for="em">Email</label><input id="em" type="email" autocomplete="username">
+    <label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password">
+    <div id="loginMsg" class="msg err hide" style="margin-top:16px"></div>
+    <button class="primary" id="signIn" style="width:100%;margin-top:20px;padding:11px">Sign in</button>
+  </div>
+</div>
+
+<div id="appView" class="wrap hide">
+  <header class="bar">
+    <div><h1>Apple Valley Styling</h1>
+      <div class="sub">Top 25 clients by spend, last 12 months &middot; stock checked live at run time</div></div>
+    <div class="who"><span id="whoami"></span><button class="link" id="signOut">Sign out</button></div>
+  </header>
+  <div class="controls">
+    <button class="primary" id="run" disabled>Run report</button>
+    <button id="refresh" class="hide">Refresh &amp; rewrite</button>
+    <button class="link" id="clear">Clear selection</button>
+    <span id="count" class="stats"></span>
+    <div class="meter" id="meter"></div>
+  </div>
+  <div id="appMsg" class="msg err hide"></div>
+  <div id="list" class="list"></div>
+  <div id="reports"></div>
+  <footer>Stock reflects Apple Valley at the moment the report ran, not items already held in a fitting room.</footer>
+</div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const URL_ = 'https://vxgnamtncvzzmqarmeqk.supabase.co';
+const KEY_ = 'sb_publishable_Ga0OS9SJEwN_onYKxYtftw_0iIF366s';
+const FN = URL_ + '/functions/v1/styling-api';
+const sb = createClient(URL_, KEY_);
+const $ = (id) => document.getElementById(id);
+let MAX = 5, selected = new Set(), customers = [];
+const money = (n) => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const show = (el, on) => el.classList.toggle('hide', !on);
+function say(el, text, kind) { el.className = 'msg ' + (kind || 'err'); el.innerHTML = text; show(el, Boolean(text)); }
+
+async function call(payload) {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { location.reload(); return; }
+  const res = await fetch(FN, { method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token },
+    body: JSON.stringify(payload) });
+  const body = await res.json().catch(() => ({ error: 'Server returned an unreadable response.' }));
+  if (!res.ok) throw new Error(body.error || ('Request failed (' + res.status + ')'));
+  return body;
+}
+
+$('signIn').onclick = async () => {
+  const b = $('signIn'); b.disabled = true; b.textContent = 'Signing in...'; say($('loginMsg'), '');
+  const { error } = await sb.auth.signInWithPassword({ email: $('em').value.trim(), password: $('pw').value });
+  b.disabled = false; b.textContent = 'Sign in';
+  if (error) { say($('loginMsg'), esc(error.message)); return; }
+  boot();
+};
+$('pw').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('signIn').click(); });
+$('signOut').onclick = async () => { await sb.auth.signOut(); location.reload(); };
+
+function meter(u, budget) {
+  const spent = Number((u && u.spend_usd) || 0);
+  const pct = budget ? Math.min(100, (spent / budget) * 100) : 0;
+  $('meter').innerHTML = '<b>$' + spent.toFixed(2) + '</b> of $' + Number(budget).toFixed(0) +
+    ' this month<div class="track"><i style="width:' + pct.toFixed(1) + '%"></i></div>' +
+    '<div style="margin-top:4px">' + ((u && u.generated) || 0) + ' written &middot; ' + ((u && u.cached) || 0) + ' reused</div>';
+}
+
+function drawList() {
+  $('list').innerHTML = customers.map((c) => {
+    const on = selected.has(c.customer_id), off = !on && selected.size >= MAX;
+    const heavy = Number(c.discount_pct) >= 35;
+    return '<label class="pick' + (on ? ' on' : '') + (off ? ' off' : '') + '">' +
+      '<input type="checkbox" data-id="' + esc(c.customer_id) + '"' + (on ? ' checked' : '') + (off ? ' disabled' : '') + '>' +
+      '<span><span class="nm">' + esc(c.display_name || ('Client #' + c.rank)) + '</span>' +
+      '<span class="mt">' + money(c.net_spend_12m) + ' &middot; ' + c.orders_12m + ' orders &middot; ' + c.units_12m + ' items</span>' +
+      (heavy ? '<span class="flag">' + c.discount_pct + '% avg discount</span>' : '') + '</span></label>';
+  }).join('');
+  $('list').querySelectorAll('input').forEach((box) => {
+    box.onchange = () => { if (box.checked) { selected.add(box.dataset.id); } else { selected.delete(box.dataset.id); } drawList(); sync(); };
+  });
+}
+function sync() {
+  $('run').disabled = selected.size === 0;
+  $('count').textContent = selected.size ? selected.size + ' of ' + MAX + ' selected' : 'Select up to ' + MAX + ' clients';
+}
+
+function productCard(p) {
+  const img = p.image ? '<img src="' + esc(p.image) + '" alt="" loading="lazy">' : '';
+  return '<div class="item"><div class="ph"><div class="fb">' + esc(p.title) + '</div>' + img + '</div>' +
+    '<div class="meta"><span class="t">' + esc(p.title) + '</span>' +
+    '<span class="v">' + esc(p.vendor || '') + (p.size ? ' &middot; size ' + esc(p.size) : '') + '</span>' +
+    '<span class="stk">' + p.in_stock + ' in stock</span>' +
+    '<span class="p">' + money(p.price) + (p.url ? ' &nbsp;<a href="' + esc(p.url) + '" target="_blank" rel="noopener">view</a>' : '') +
+    '</span></div></div>';
+}
+
+function reportCard(r) {
+  if (r.error) return '<div class="report"><div class="rhead"><h2>' + esc(r.display_name) + '</h2></div><div class="msg err">' + esc(r.error) + '</div></div>';
+  const items = r.products || [];
+  const prof = r.profile || {};
+  const sizes = Object.entries(prof.sizes_by_category || {}).filter((e) => e[1].modal).map((e) => e[0] + ' ' + e[1].modal).join(', ');
+  const palette = (prof.top_colors || []).slice(0, 5).map((c) => c.color).join(', ');
+  const wu = r.writeup || {};
+  const badge = r.source === 'cached' ? '<span class="badge cache">reused, no cost</span>'
+    : r.source === 'generated' ? '<span class="badge live">written just now</span>' : '';
+  const looks = (wu.looks || []).map((L) => {
+    const pics = (L.product_indexes || []).map((i) => items[i]).filter(Boolean);
+    return '<div class="look"><h3>' + esc(L.name || 'Look') + '</h3><div class="grid">' + pics.map(productCard).join('') + '</div>' +
+      (L.why ? '<div class="txt"><strong>Why it suits her.</strong> ' + esc(L.why) + '</div>' : '') +
+      (L.how_to_style ? '<div class="txt"><strong>How to style it.</strong> ' + esc(L.how_to_style) + '</div>' : '') + '</div>';
+  }).join('');
+  const used = new Set((wu.looks || []).reduce((a, L) => a.concat(L.product_indexes || []), []));
+  const extras = items.filter((_, i) => !used.has(i));
+  const band = prof.price_band || {};
+  return '<div class="report"><div class="rhead"><h2>' + esc(r.display_name) + '</h2>' +
+    '<span class="stats">' + money(r.net_spend_12m) + ' &middot; ' + r.orders_12m + ' orders &middot; ' + r.units_12m + ' items &middot; ' + r.discount_pct + '% avg discount ' + badge + '</span></div>' +
+    (r.note ? '<div class="msg info">' + esc(r.note) + '</div>' : '') +
+    (wu.preference_summary ? '<div class="summary">' + esc(wu.preference_summary) + '</div>' : '') +
+    '<div class="prof">' + (sizes ? '<span>Sizes <b>' + esc(sizes) + '</b></span>' : '') +
+    (palette ? '<span>Palette <b>' + esc(palette) + '</b></span>' : '') +
+    (band.median ? '<span>Typical item <b>$' + band.median + '</b></span>' : '') +
+    '<span>Read from <b>' + (prof.items_seen || 0) + '</b> past items</span></div>' + looks +
+    (extras.length ? '<div class="look"><h3>Also worth pulling</h3><div class="grid">' + extras.map(productCard).join('') + '</div></div>' : '') +
+    '</div>';
+}
+
+async function runReport(force) {
+  const ids = Array.from(selected);
+  $('run').disabled = true; $('refresh').disabled = true;
+  say($('appMsg'), '<span class="spin"></span> &nbsp;Pulling live inventory and building ' + ids.length + ' report' + (ids.length > 1 ? 's' : '') + '. This takes a moment.', 'info');
+  $('reports').innerHTML = '';
+  try {
+    const out = await call({ action: 'run', customer_ids: ids, force_refresh: Boolean(force) });
+    say($('appMsg'), ''); meter(out.usage, out.budget_usd);
+    $('reports').innerHTML = (out.reports || []).map(reportCard).join('');
+    show($('refresh'), true);
+  } catch (e) { say($('appMsg'), esc(e.message)); }
+  finally { $('run').disabled = selected.size === 0; $('refresh').disabled = false; }
+}
+$('run').onclick = () => runReport(false);
+$('refresh').onclick = () => runReport(true);
+$('clear').onclick = () => { selected.clear(); drawList(); sync(); };
+
+async function boot() {
+  const s = await sb.auth.getSession();
+  const session = s.data.session;
+  show($('loginView'), !session); show($('appView'), Boolean(session));
+  if (!session) return;
+  $('whoami').textContent = session.user.email;
+  try {
+    const out = await call({ action: 'customers' });
+    customers = out.customers || []; MAX = out.max_per_run || 5;
+    meter(out.usage, out.budget_usd);
+    if (!out.ai_enabled) say($('appMsg'), 'Styling write-ups are currently switched off. Product matching still works.', 'info');
+    drawList(); sync();
+  } catch (e) { say($('appMsg'), esc(e.message)); }
+}
+boot();
+</script></body></html>
