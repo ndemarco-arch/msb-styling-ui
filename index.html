@@ -227,7 +227,9 @@ function reportCard(r, n) {
       '<div class="grid">' + refs.map((x) => productCard(items[x.i], x.role)).join('') + '</div>' +
       (why || how ? '<div class="why">' +
         (why ? '<p><strong>Why her.</strong> ' + esc(why) + '</p>' : '') +
-        (how ? '<p><strong>The look:</strong> ' + esc(how) + '</p>' : '') + '</div>' : '') + '</div>';
+        (how ? '<p><strong>The look:</strong> ' + esc(how) + '</p>' : '') + '</div>' : '') +
+      (L.notes && L.notes.length ? '<div class="msg warn" style="margin:10px 0 0;font-size:12.5px">' +
+        '<strong>Stylist notes:</strong> ' + L.notes.map(esc).join(' ') + '</div>' : '') + '</div>';
   }).join('');
   const used = new Set((wu.looks || []).reduce((a, L) => a.concat(lookRefs(L).map((x) => x.i)), []));
   const extras = items.filter((_, i) => !used.has(i));
