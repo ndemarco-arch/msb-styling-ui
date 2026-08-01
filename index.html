@@ -2,116 +2,195 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apple Valley Styling</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#faf6f1;--card:#fffdfb;--ink:#2e2a27;--muted:#8a7f76;--rose:#c9a0a0;--rose-dk:#a87c7c;--line:#e8ded4;--good:#5f7d5f;--warn:#a8763f}
+:root{--paper:#f7f4ef;--ink:#141210;--secondary:#4a4540;--muted:#8a8480;--burgundy:#6b2737;--blush:#f0eaeb;--line:#e8e2db;--amber:#b86a1f;--green:#2d6a4f}
 *{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.55 Inter,system-ui,sans-serif}
-h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;margin:0}
-a{color:var(--rose-dk)}
-.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 80px}
-header.bar{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:26px;flex-wrap:wrap}
-header.bar h1{font-size:26px}
-.sub{color:var(--muted);font-size:13px;margin-top:4px}
-.who{font-size:13px;color:var(--muted)}
-.who button{margin-left:10px}
-button{font:inherit;font-weight:500;border-radius:8px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 15px;transition:.15s}
-button:hover:not(:disabled){border-color:var(--rose)}
-button:disabled{opacity:.5;cursor:not-allowed}
-button.primary{background:var(--rose-dk);border-color:var(--rose-dk);color:#fff}
-button.link{border:none;background:none;color:var(--rose-dk);text-decoration:underline;padding:0}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
-.login{max-width:390px;margin:9vh auto}
-.login h1{font-size:24px;margin-bottom:6px}
-label{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
-input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
-input:focus{outline:none;border-color:var(--rose)}
-.controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
-.meter{margin-left:auto;font-size:12px;color:var(--muted);text-align:right;line-height:1.4}
-.meter b{color:var(--ink);font-weight:600}
-.track{width:150px;height:5px;background:var(--line);border-radius:3px;margin-top:5px;overflow:hidden}
-.track i{display:block;height:100%;background:var(--rose-dk)}
-.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:9px;margin-bottom:22px}
-.pick{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;cursor:pointer;transition:.15s}
-.pick:hover{border-color:var(--rose)}
-.pick.on{border-color:var(--rose-dk);background:#fdf7f5}
-.pick.off{opacity:.45;cursor:not-allowed}
-.pick input{width:auto;margin:3px 0 0}
-.pick .nm{font-weight:600;font-size:14px}
-.pick .mt{font-size:12px;color:var(--muted);margin-top:2px}
-.flag{display:inline-block;font-size:10.5px;color:var(--warn);border:1px solid #e8d3bb;background:#fdf6ee;border-radius:4px;padding:1px 5px;margin-top:5px}
-.report{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px;scroll-margin-top:58px}
-.rhead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:17px;flex-wrap:wrap}
-.rhead h2{font-size:21px}
-.rank{display:inline-block;font-size:11.5px;font-weight:600;font-family:Inter,system-ui,sans-serif;color:#fff;background:var(--rose-dk);border-radius:99px;padding:3px 9px;vertical-align:2px;letter-spacing:.04em}
-.cid{font-size:11px;color:#b3a89e;font-variant-numeric:tabular-nums}
-nav.jump{position:sticky;top:0;z-index:20;background:rgba(250,246,241,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:9px 2px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:6px}
-nav.jump a{font-size:12px;text-decoration:none;color:var(--ink);background:#f1e9df;padding:4px 11px;border-radius:99px;white-space:nowrap}
-nav.jump a:hover{background:var(--rose-dk);color:#fff}
-.stats{font-size:12.5px;color:var(--muted)}
-.badge{font-size:11px;border-radius:11px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
-.badge.live{color:var(--good);border-color:#cadaca;background:#f4f8f4}
-.badge.cache{color:var(--muted);background:#f7f4f1}
-.summary{background:#fdf7f5;border-left:3px solid var(--rose);border-radius:0 8px 8px 0;padding:13px 16px;margin-bottom:20px;font-size:14px}
-.prof{display:flex;gap:22px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:20px}
-.prof b{color:var(--ink);font-weight:600}
-.look{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
-.look h3{font-size:16px;margin-bottom:3px}
-.look .txt{font-size:13.5px;margin:10px 0}
-.why{background:#fbf7f2;border-left:3px solid var(--rose-dk);border-radius:0 8px 8px 0;padding:12px 15px;margin:12px 0 0;font-size:13.5px;max-width:1000px}
-.why p{margin:0 0 8px}
-.why p:last-child{margin:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin:12px 0}
-.item{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:.15s}
-a.item:hover{border-color:var(--rose-dk);box-shadow:0 4px 14px rgba(168,124,124,.14);transform:translateY(-2px)}
-.item .role{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--rose-dk);font-weight:600}
-.item .ph{aspect-ratio:2/3;background:#f4ece4;position:relative;overflow:hidden}
-.item .ph img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
-.item .ph .fb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--muted);padding:12px}
-.item .meta{padding:9px 10px;font-size:12px;flex:1;display:flex;flex-direction:column;gap:3px}
-.item .t{font-weight:600;line-height:1.3}
-.item .v{color:var(--muted)}
-.item .p{margin-top:auto;font-weight:600}
-.stk{font-size:11px;color:var(--good)}
-.msg{padding:13px 16px;border-radius:9px;font-size:13.5px;margin-bottom:14px}
-.msg.err{background:#fdf1f1;border:1px solid #eccfcf;color:#8f4a4a}
-.msg.info{background:#f7f4f1;border:1px solid var(--line);color:var(--muted)}
-.msg.warn{background:#fdf6ee;border:1px solid #e8d3bb;color:#7a5c1e}
-.chips{display:flex;gap:7px;flex-wrap:wrap;margin:-8px 0 20px}
-.spin{display:inline-block;width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--rose-dk);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px}
-@keyframes sp{to{transform:rotate(360deg)}}
+body{margin:0;min-height:100vh;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:15px}
+h1,h2,h3,.client-name,.report-title h2{font-family:'Playfair Display',Georgia,serif}
+.chrome,.content,.footer{max-width:1320px;margin:auto}
+.site-header{padding:36px 0 24px;display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}
+.site-header h1{font-size:30px;margin:0;font-weight:700}
+.site-header p,.section-head p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.account{display:flex;align-items:flex-start;gap:20px;color:var(--muted);font-size:13px;padding-top:8px}
+.account button,.text-button,.tiny-link{border:0;background:none;color:var(--burgundy);text-decoration:underline;cursor:pointer;font:inherit}
+.usage{width:220px;text-align:right;margin-left:20px}
+.usage strong{color:var(--ink);font-size:15px}
+.meter{height:5px;background:#e5ded7;border-radius:5px;margin-top:10px}
+.meter i{display:block;width:1%;height:100%;background:var(--burgundy)}
+.usage small{display:block;margin-top:9px;color:var(--muted)}
+.stepper{height:58px;background:white;border-bottom:1px solid var(--line);display:flex;justify-content:center;align-items:center;gap:12px}
+.step-wrap{display:flex;align-items:center;gap:12px;color:var(--muted)}
+.step{border:1px solid var(--line);border-radius:20px;background:#fff;padding:8px 15px;color:var(--muted);font:600 13px Inter;letter-spacing:.08em;display:flex;gap:5px;cursor:pointer}
+.step.active{color:#fff;background:var(--burgundy);border-color:var(--burgundy)}
+.step.complete{color:var(--secondary);background:#f2efec}
+.step:disabled{cursor:default;opacity:.6}
+.mode-section{opacity:0;transition:opacity .15s ease}
+.mode-section.active{opacity:1}
+.content{padding:46px 0 30px}
+.section-head{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding-bottom:26px}
+.section-head h2{font-size:32px;margin:0}
+.head-actions,.filter-row,.filters,.action-bar>div{display:flex;align-items:center;gap:14px}
+.counter,.rank{background:var(--burgundy);color:white;border-radius:18px;padding:7px 12px;font-size:13px}
+.primary{border:0;border-radius:7px;background:var(--burgundy);color:#fff;padding:12px 18px;font:600 14px Inter;display:inline-flex;align-items:center;gap:7px;cursor:pointer}
+.primary:disabled{opacity:.5;cursor:not-allowed}
+.filter-row{justify-content:space-between;padding:18px 0}
+.filter-row label{border:1px solid var(--line);background:transparent;border-radius:20px;padding:7px 12px;color:var(--muted);font:500 12px Inter;cursor:pointer;display:flex;align-items:center;gap:4px}
+.filter-row select{border:0;background:transparent;color:var(--secondary);font:inherit;outline:0}
+.notice{background:#fdf3e3;border:1px solid #e8cfb0;color:var(--amber);padding:10px 14px;border-radius:6px;font-size:13px}
+.notice.err{background:#fbeeee;border-color:#e3c3c3;color:#8f3a3a}
+.client-grid{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.client-card{width:100%;min-height:178px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;transition:.15s;box-shadow:0 2px 7px #3b25100a;font:inherit;color:inherit}
+.client-card:hover{transform:translateY(-2px);box-shadow:0 9px 18px #3b251014;background:#fffdfa}
+.client-card.selected{border:2px solid var(--burgundy);background:#f9f3f4}
+.client-top{width:100%;display:flex;justify-content:space-between;align-items:center}
+.rank{font:700 12px 'Playfair Display';padding:5px 9px}
+.client-name{font-size:18px;font-weight:700;margin-top:18px}
+.spend{font-size:19px;margin-top:5px}
+.stats{font-size:12px;color:var(--muted);margin-top:3px}
+.discount{margin-top:auto;border:1px solid #e5ccaa;background:#fdf3e3;color:var(--amber);border-radius:5px;padding:5px 8px;font-size:11px;font-weight:600}
+.selected-check{margin-top:auto;padding-top:8px;color:var(--burgundy);font-size:11px;display:flex;align-items:center;gap:4px}
+.footer{text-align:center;color:var(--muted);padding:30px 0 60px;font-size:13px}
+.building-content{max-width:1000px}
+.building-content .section-head{justify-content:flex-start}
+.progress-list{display:grid;gap:14px;margin-top:28px}
+.progress-card{background:#fff;border:1px solid var(--line);border-radius:11px;padding:20px 24px}
+.progress-card.ready{background:#f7fbf8}
+.progress-header{display:flex;justify-content:space-between;align-items:center}
+.progress-header>div{display:flex;align-items:center;gap:12px}
+.progress-header h3{margin:0;font-size:21px}
+.progress-header span:last-child{color:var(--muted);font-size:13px}
+.progress-header strong{font-size:13px;color:var(--secondary)}
+.track{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:22px}
+.track-stage{position:relative;color:var(--muted);font-size:11px}
+.track-stage i{display:block;height:4px;background:#e7e2dc;margin-bottom:7px}
+.track-stage.filled i{background:var(--burgundy)}
+.track-stage.current i{background:#b47784;animation:pulse 1.2s infinite}
+.progress-card small{color:var(--muted);display:block;margin-top:13px}
+.summary{margin-top:24px;color:var(--muted);font-size:13px}
+.overall{height:5px;background:#e7e2dc;border-radius:4px;margin-top:8px}
+.overall i{display:block;width:5%;height:100%;background:var(--burgundy);transition:width .8s ease}
+.hint{text-align:center;font:italic 16px 'Playfair Display';color:var(--secondary);margin:32px}
+.action-bar{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;margin-bottom:18px}
+.ghost,.outline{border:1px solid var(--line);background:#fff;border-radius:6px;padding:9px 12px;color:var(--secondary);font:500 12px Inter;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.jump-nav{position:sticky;top:0;background:var(--paper);padding:10px 0;z-index:2;display:flex;gap:8px;flex-wrap:wrap}
+.jump-nav button{border:1px solid var(--line);background:#fff;color:var(--secondary);border-radius:18px;padding:8px 14px;font:600 12px Inter;cursor:pointer}
+.jump-nav button.active{border:0;background:var(--burgundy);color:#fff}
+.report{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 38px;margin-bottom:26px;scroll-margin-top:64px}
+.report-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:22px}
+.report-title{display:flex;align-items:center;gap:12px}
+.report-title h2{font-size:36px;margin:0}
+.report-header p{color:var(--muted);margin:8px 0 0;font-size:13px}
+.report-meta{text-align:right;color:var(--muted);display:grid;gap:10px;font-size:12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:18px 0}
+.chips span{background:var(--blush);border:1px solid #e3d5d8;border-radius:18px;padding:6px 10px;font-size:11px;color:var(--secondary)}
+.writeup{border-left:4px solid var(--burgundy);padding:4px 22px;margin:4px 0 34px}
+.writeup p{color:var(--secondary);font-size:14px;line-height:1.7}
+.flag{border-left:3px solid var(--amber);background:#fdf3e3;color:#8c5a3c;padding:13px 15px;border-radius:4px;font-size:13px}
+.look{margin-top:34px}
+.look-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}
+.look-heading h3{font-size:25px;margin:0}
+.look-heading em{font:italic 15px 'Playfair Display';color:var(--secondary)}
+.look-heading>span{color:var(--muted);font-size:11px;border:1px solid var(--line);padding:6px 9px;border-radius:14px}
+.product-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.product-grid.four{grid-template-columns:repeat(4,1fr)}
+.product-card{border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff;display:block;text-decoration:none;color:inherit;transition:.15s}
+a.product-card:hover{transform:translateY(-2px);box-shadow:0 8px 16px #3b251014;border-color:#cfc7c0}
+.product-image{height:160px;background:#f4eee7;display:flex;align-items:flex-end;padding:8px;position:relative;overflow:hidden;border-radius:4px}
+.product-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.role{background:var(--burgundy);color:#fff;border-radius:3px;padding:4px 6px;font-size:9px;letter-spacing:.08em;position:relative;z-index:1}
+.vendor{color:var(--muted);font-size:10px;margin:10px 0 4px}
+.product-card h4{font:600 13px Inter;margin:0;color:var(--secondary)}
+.product-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.product-bottom strong{font-size:15px}
+.product-bottom span{color:var(--green);font-size:10px}
+.product-bottom span.low{color:var(--amber)}
+.product-card>small{color:var(--muted);font-size:10px}
+.callout{background:var(--paper);display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:16px 20px;margin-top:16px;color:var(--secondary);font-size:13px;line-height:1.6}
+.callout p{margin:0}
+.callout em{font:italic 15px 'Playfair Display';color:var(--ink)}
+.look .flag{margin-top:12px;font-size:12.5px}
+.also{margin-top:40px}
+.also h3{font:600 11px Inter;letter-spacing:.18em;color:var(--muted)}
+.extra-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.small-product{background:var(--paper);padding:8px}
+.small-product .product-image{height:100px}
+.small-product .product-bottom{margin-top:7px}
+.small-product h4{font-size:11px}
+.small-product .vendor{font-size:9px;margin-top:6px}
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.login{width:100%;max-width:400px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:34px 36px;box-shadow:0 2px 7px #3b25100a}
+.login h1{font-size:28px;margin:0 0 6px}
+.login .sub{color:var(--muted);font-size:13px;margin-bottom:10px}
+label.field{display:block;font:600 11px Inter;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
+input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:7px;font:inherit;background:#fff}
+input:focus{outline:none;border-color:var(--burgundy)}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--burgundy);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px}
 .hide{display:none!important}
-footer{margin-top:36px;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.7}
+@keyframes sp{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@media(max-width:1360px){.chrome,.content,.footer{padding-left:20px;padding-right:20px}}
+@media(max-width:900px){.site-header{gap:20px}.account{flex-wrap:wrap;justify-content:flex-end}.usage{margin-left:0}.client-grid{grid-template-columns:repeat(2,1fr)}.product-grid,.product-grid.four{grid-template-columns:repeat(3,1fr)}.extra-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.site-header,.section-head,.action-bar,.report-header,.look-heading{display:block}.account{margin-top:18px;justify-content:flex-start}.usage{text-align:left;margin-top:12px}.stepper{justify-content:flex-start;padding-left:20px}.section-head h2{font-size:28px}.head-actions{margin-top:18px;flex-wrap:wrap}.filter-row{display:block}.client-grid{grid-template-columns:1fr}.report{padding:20px}.report-title h2{font-size:28px}.report-meta{text-align:left;margin-top:12px}.product-grid,.product-grid.four{grid-template-columns:repeat(2,1fr)}.callout{grid-template-columns:1fr}.extra-grid{grid-template-columns:repeat(2,1fr)}}
+@media print{.chrome,.action-bar,.jump-nav,.footer{display:none!important}body,.report{background:#fff}.content{padding:0}.report{border:0;padding:0}.look{break-inside:avoid}.writeup{break-inside:avoid}}
 </style></head><body>
 
-<div id="loginView" class="wrap">
-  <div class="login panel">
+<div id="loginView" class="login-wrap">
+  <div class="login">
     <h1>Apple Valley Styling</h1>
     <div class="sub">Sign in with your Mainstream Boutique account.</div>
-    <label for="em">Email</label><input id="em" type="email" autocomplete="username">
-    <label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password">
-    <div id="loginMsg" class="msg err hide" style="margin-top:16px"></div>
-    <button class="primary" id="signIn" style="width:100%;margin-top:20px;padding:11px">Sign in</button>
+    <label class="field" for="em">Email</label><input id="em" type="email" autocomplete="username">
+    <label class="field" for="pw">Password</label><input id="pw" type="password" autocomplete="current-password">
+    <div id="loginMsg" class="notice err hide" style="margin-top:16px"></div>
+    <button class="primary" id="signIn" style="width:100%;margin-top:22px;justify-content:center">Sign in</button>
   </div>
 </div>
 
-<div id="appView" class="wrap hide">
-  <header class="bar">
-    <div><h1>Apple Valley Styling</h1>
-      <div class="sub">Top 25 clients by spend, last 12 months &middot; stock checked live at run time</div></div>
-    <div class="who"><span id="whoami"></span><button class="link" id="signOut">Sign out</button></div>
-  </header>
-  <div class="controls">
-    <button class="primary" id="run" disabled>Run report</button>
-    <button id="refresh" class="hide">Refresh &amp; rewrite</button>
-    <button class="link" id="clear">Clear selection</button>
-    <span id="count" class="stats"></span>
-    <div class="meter" id="meter"></div>
+<div id="appView" class="hide">
+  <div class="chrome">
+    <header class="site-header">
+      <div><h1>Apple Valley Styling</h1><p>Top 25 clients by spend &middot; last 12 months &middot; stock checked live</p></div>
+      <div class="account"><span id="whoami"></span><button id="signOut">Sign out</button><div class="usage" id="usage"></div></div>
+    </header>
+    <nav class="stepper" aria-label="Styling workflow" id="stepper"></nav>
   </div>
-  <div id="appMsg" class="msg err hide"></div>
-  <div id="list" class="list"></div>
-  <div id="reports"></div>
-  <footer>Stock reflects Apple Valley at the moment the report ran, not items already held in a fitting room.</footer>
+
+  <div class="mode-section" id="sec-pick">
+    <section class="content pick-content">
+      <div class="section-head">
+        <div><h2>Choose your clients</h2><p id="pickSub">Select clients &middot; run a lookbook for each</p></div>
+        <div class="head-actions"><span class="counter" id="counter">0 selected</span>
+          <button class="primary hide" id="run">Run report &rarr;</button>
+          <button class="text-button hide" id="clear">Clear selection</button></div>
+      </div>
+      <div class="filter-row"><div class="filters"></div>
+        <label>Sort: <select id="sort"><option value="spend">Spend &darr;</option><option value="orders">Most orders</option></select></label></div>
+      <p class="notice err hide" id="appMsg" role="status"></p>
+      <ul class="client-grid" id="list"></ul>
+    </section>
+    <footer class="footer">Stock reflects Apple Valley at the moment the report runs, not items already held in a fitting room.</footer>
+  </div>
+
+  <div class="mode-section hide" id="sec-building">
+    <section class="content building-content">
+      <div class="section-head"><div><h2>Building your lookbooks</h2><p>This takes 30&ndash;60 seconds per client &middot; stock is being checked live</p></div></div>
+      <div class="progress-list" id="progressList"></div>
+      <div class="summary"><span id="progressSummary"></span><div class="overall"><i id="overallBar"></i></div></div>
+      <p class="hint">Reports appear as each client finishes.</p>
+    </section>
+    <footer class="footer">Stock reflects Apple Valley at the moment the report runs, not items already held in a fitting room.</footer>
+  </div>
+
+  <div class="mode-section hide" id="sec-read">
+    <section class="content read-content">
+      <div class="action-bar"><span id="readCount"></span>
+        <div><button class="ghost" id="refresh">&#8635; Refresh &amp; rewrite</button>
+        <button class="text-button" id="more">+ Select more clients</button></div></div>
+      <nav class="jump-nav" id="jumpNav"></nav>
+      <div id="reports"></div>
+    </section>
+    <footer class="footer">Stock reflects Apple Valley at the moment the report runs, not items already held in a fitting room.</footer>
+  </div>
 </div>
 
 <script type="module">
@@ -121,11 +200,12 @@ const KEY_ = 'sb_publishable_Ga0OS9SJEwN_onYKxYtftw_0iIF366s';
 const FN = URL_ + '/functions/v1/styling-api';
 const sb = createClient(URL_, KEY_);
 const $ = (id) => document.getElementById(id);
-let MAX = 5, selected = new Set(), customers = [];
+let MAX = 5, selected = new Set(), customers = [], lastOut = null, mode = 'pick', sortBy = 'spend';
+let progressTimer = null, progressT0 = 0;
 const money = (n) => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const show = (el, on) => el.classList.toggle('hide', !on);
-function say(el, text, kind) { el.className = 'msg ' + (kind || 'err'); el.innerHTML = text; show(el, Boolean(text)); }
+function say(text, kind) { const el = $('appMsg'); el.className = 'notice ' + (kind || 'err'); el.innerHTML = text; show(el, Boolean(text)); }
 
 async function call(payload) {
   const { data: { session } } = await sb.auth.getSession();
@@ -139,61 +219,156 @@ async function call(payload) {
 }
 
 $('signIn').onclick = async () => {
-  const b = $('signIn'); b.disabled = true; b.textContent = 'Signing in...'; say($('loginMsg'), '');
+  const b = $('signIn'); b.disabled = true; b.textContent = 'Signing in...';
+  const m = $('loginMsg'); show(m, false);
   const { error } = await sb.auth.signInWithPassword({ email: $('em').value.trim(), password: $('pw').value });
   b.disabled = false; b.textContent = 'Sign in';
-  if (error) { say($('loginMsg'), esc(error.message)); return; }
+  if (error) { m.innerHTML = esc(error.message); show(m, true); return; }
   boot();
 };
 $('pw').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('signIn').click(); });
 $('signOut').onclick = async () => { await sb.auth.signOut(); location.reload(); };
 
-function meter(u, budget) {
-  const spent = Number((u && u.spend_usd) || 0);
-  const pct = budget ? Math.min(100, (spent / budget) * 100) : 0;
-  $('meter').innerHTML = '<b>$' + spent.toFixed(2) + '</b> of $' + Number(budget).toFixed(0) +
-    ' this month<div class="track"><i style="width:' + pct.toFixed(1) + '%"></i></div>' +
-    '<div style="margin-top:4px">' + ((u && u.generated) || 0) + ' written &middot; ' + ((u && u.cached) || 0) + ' reused</div>';
+function setMode(m) {
+  mode = m;
+  for (const k of ['pick', 'building', 'read']) {
+    const sec = $('sec-' + k);
+    show(sec, k === m);
+    sec.classList.toggle('active', k === m);
+  }
+  drawStepper();
+  window.scrollTo(0, 0);
+}
+function drawStepper() {
+  const steps = [{ id: 'pick', label: 'PICK' }, { id: 'building', label: 'BUILD' }, { id: 'read', label: 'READ' }];
+  const idx = steps.findIndex((s) => s.id === mode);
+  $('stepper').innerHTML = steps.map((s, i) => {
+    const complete = i < idx;
+    const clickable = (s.id === 'pick' && mode !== 'building') || (s.id === 'read' && lastOut && mode !== 'building');
+    return '<div class="step-wrap"><button class="step' + (s.id === mode ? ' active' : '') + (complete ? ' complete' : '') + '"' +
+      (clickable ? '' : ' disabled') + ' data-step="' + s.id + '">' + (complete ? '&#10003; ' : '') + s.label + '</button></div>' +
+      (i < 2 ? '<span class="step-wrap">&rarr;</span>' : '');
+  }).join('');
+  $('stepper').querySelectorAll('button[data-step]').forEach((b) => {
+    b.onclick = () => { const t = b.dataset.step; if (b.disabled) return;
+      if (t === 'pick') setMode('pick'); else if (t === 'read' && lastOut) { setMode('read'); } };
+  });
 }
 
+function usageHtml(u, budget) {
+  const spent = Number((u && u.spend_usd) || 0);
+  const pct = budget ? Math.min(100, (spent / budget) * 100) : 0;
+  return '<strong>$' + spent.toFixed(2) + '</strong> of $' + Number(budget || 0).toFixed(0) + ' this month' +
+    '<div class="meter"><i style="width:' + Math.max(1, pct).toFixed(1) + '%"></i></div>' +
+    '<small>' + ((u && u.generated) || 0) + ' written &middot; ' + ((u && u.cached) || 0) + ' reused</small>';
+}
+function meter(u, budget) { $('usage').innerHTML = usageHtml(u, budget); }
+
 function drawList() {
-  $('list').innerHTML = customers.map((c) => {
-    const on = selected.has(c.customer_id), off = !on && selected.size >= MAX;
+  const rows = customers.slice().sort((a, b) => sortBy === 'orders' ? (b.orders_12m - a.orders_12m) : (a.rank - b.rank));
+  $('list').innerHTML = rows.map((c) => {
+    const on = selected.has(c.customer_id);
     const heavy = Number(c.discount_pct) >= 35;
-    return '<label class="pick' + (on ? ' on' : '') + (off ? ' off' : '') + '">' +
-      '<input type="checkbox" data-id="' + esc(c.customer_id) + '"' + (on ? ' checked' : '') + (off ? ' disabled' : '') + '>' +
-      '<span><span class="nm">' + esc(c.display_name || ('Client #' + c.rank)) + '</span>' +
-      '<span class="mt">' + money(c.net_spend_12m) + ' &middot; ' + c.orders_12m + ' orders &middot; ' + c.units_12m + ' items</span>' +
-      (heavy ? '<span class="flag">' + c.discount_pct + '% avg discount</span>' : '') + '</span></label>';
+    return '<li><button class="client-card' + (on ? ' selected' : '') + '" aria-pressed="' + on + '" data-id="' + esc(c.customer_id) + '">' +
+      '<span class="client-top"><span class="rank">#' + Number(c.rank) + '</span></span>' +
+      '<span class="client-name">' + esc(c.display_name || ('Client #' + c.rank)) + '</span>' +
+      '<strong class="spend">' + money(c.net_spend_12m) + '</strong>' +
+      '<span class="stats">' + c.orders_12m + ' orders &middot; ' + c.units_12m + ' items</span>' +
+      (heavy ? '<span class="discount">' + c.discount_pct + '% avg discount</span>' : '') +
+      (on ? '<span class="selected-check">&#10003; pulled</span>' : '') +
+      '</button></li>';
   }).join('');
-  $('list').querySelectorAll('input').forEach((box) => {
-    box.onchange = () => { if (box.checked) { selected.add(box.dataset.id); } else { selected.delete(box.dataset.id); } drawList(); sync(); };
+  $('list').querySelectorAll('button.client-card').forEach((card) => {
+    card.onclick = () => {
+      const id = card.dataset.id;
+      say('');
+      if (selected.has(id)) selected.delete(id);
+      else if (selected.size >= MAX) { say('You can choose up to ' + MAX + ' clients at a time.'); return; }
+      else selected.add(id);
+      drawList(); sync();
+    };
   });
 }
 function sync() {
-  $('run').disabled = selected.size === 0;
-  $('count').textContent = selected.size ? selected.size + ' of ' + MAX + ' selected' : 'Select up to ' + MAX + ' clients';
+  $('counter').textContent = selected.size + ' of ' + MAX + ' selected';
+  $('pickSub').textContent = 'Select up to ' + MAX + ' clients · run a lookbook for each';
+  show($('run'), selected.size > 0);
+  show($('clear'), selected.size > 0);
+}
+$('sort').onchange = () => { sortBy = $('sort').value; drawList(); };
+$('clear').onclick = () => { selected.clear(); drawList(); sync(); };
+
+// BUILD screen: real API call in flight; stages animate client-side while we wait.
+const STAGES = ['Queued', 'Profiling client', 'Styling looks', 'Done'];
+function stageOf(k, elapsed, done) {
+  if (done) return 4;
+  const start = k * 2.5;
+  if (elapsed < start) return 1;
+  if (elapsed < start + 9) return 2;
+  return 3;
+}
+function drawProgress(ids, done) {
+  const elapsed = (Date.now() - progressT0) / 1000;
+  const rows = ids.map((id) => customers.find((c) => c.customer_id === id)).filter(Boolean);
+  $('progressList').innerHTML = rows.map((c, k) => {
+    const st = stageOf(k, elapsed, done);
+    const status = st === 4 ? 'Done ✓' : st === 3 ? 'Styling looks…' : st === 2 ? 'Profiling client…' : 'Queued';
+    return '<article class="progress-card' + (st === 4 ? ' ready' : '') + '">' +
+      '<div class="progress-header"><div><span class="rank">#' + Number(c.rank) + '</span><h3>' + esc(c.display_name) + '</h3>' +
+      '<span>' + money(c.net_spend_12m) + '</span></div><strong>' + status + '</strong></div>' +
+      '<div class="track">' + STAGES.map((label, i) =>
+        '<div class="track-stage' + (i + 1 <= st ? ' filled' : '') + (i + 1 === st && st !== 4 ? ' current' : '') + '"><i></i><span>' + label + '</span></div>').join('') + '</div>' +
+      '</article>';
+  }).join('');
+  const ready = done ? rows.length : 0;
+  $('progressSummary').textContent = ready + ' of ' + rows.length + ' ready · ' + (rows.length - ready) + ' in progress';
+  const est = rows.length * 50;
+  $('overallBar').style.width = (done ? 100 : Math.min(92, (elapsed / est) * 100)) + '%';
 }
 
-function productCard(p, role) {
+async function runReport(force) {
+  const ids = Array.from(selected);
+  if (!ids.length) return;
+  say('');
+  setMode('building');
+  progressT0 = Date.now();
+  drawProgress(ids, false);
+  progressTimer = setInterval(() => drawProgress(ids, false), 1000);
+  try {
+    const out = await call({ action: 'run', customer_ids: ids, force_refresh: Boolean(force) });
+    clearInterval(progressTimer);
+    drawProgress(ids, true);
+    lastOut = out;
+    meter(out.usage, out.budget_usd);
+    setTimeout(() => { renderReports(out); setMode('read'); }, 700);
+  } catch (e) {
+    clearInterval(progressTimer);
+    setMode('pick');
+    say(esc(e.message));
+  }
+}
+$('run').onclick = () => runReport(false);
+$('refresh').onclick = () => runReport(true);
+$('more').onclick = () => setMode('pick');
+
+function productCard(p, role, small) {
   const r = role || p.role || '';
   const src = p.image ? esc(p.image + (String(p.image).indexOf('?') >= 0 ? '&' : '?') + 'width=600') : '';
   const img = src ? '<img src="' + src + '" alt="' + esc(p.title) + '" loading="lazy">' : '';
-  const bits = [esc(p.vendor || ''), p.color ? esc(p.color) : '', p.size ? 'size ' + esc(p.size) : '']
-    .filter(Boolean).join(' &middot; ');
-  const inner = '<div class="ph"><div class="fb">' + esc(p.title) + '</div>' + img + '</div>' +
-    '<div class="meta">' + (r && r !== 'OTHER' ? '<span class="role">' + esc(r) + '</span>' : '') +
-    '<span class="t">' + esc(p.title) + '</span>' +
-    (bits ? '<span class="v">' + bits + '</span>' : '') +
-    '<span class="p">' + money(p.price) + '</span>' +
-    '<span class="stk">' + Number(p.in_stock || 0) + ' in stock</span></div>';
-  return p.url
-    ? '<a class="item" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + inner + '</a>'
-    : '<div class="item">' + inner + '</div>';
+  const stockN = Number(p.in_stock || 0);
+  const stock = stockN > 2 ? '<span>In stock</span>' : stockN > 0 ? '<span class="low">Low stock</span>' : '<span></span>';
+  const vend = esc(p.vendor || '') + (p.color ? ' &middot; ' + esc(String(p.color).toLowerCase()) : '');
+  const inner = '<div class="product-image">' + img + (r && r !== 'OTHER' ? '<span class="role">' + esc(r) + '</span>' : '') + '</div>' +
+    '<p class="vendor">' + vend + '</p><h4>' + esc(p.title) + '</h4>' +
+    '<div class="product-bottom"><strong>' + money(p.price) + '</strong>' + stock + '</div>' +
+    '<small>' + esc(p.size === 'OS' ? 'One size' : (p.size || '')) + '</small>';
+  const cls = 'product-card' + (small ? ' small-product' : '');
+  return p.url ? '<a class="' + cls + '" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + inner + '</a>'
+    : '<article class="' + cls + '">' + inner + '</article>';
 }
 
 // Accept BOTH write-up shapes — current (items:[{i,role}]) and legacy
-// (product_indexes:[i]) — so a backend field rename can never blank the page again.
+// (product_indexes:[i]) — so a backend field rename can never blank the page.
 const lookRefs = (L) => (Array.isArray(L.items) && L.items.length
   ? L.items.map((it) => ({ i: Number(it && it.i), role: it && it.role }))
   : (L.product_indexes || []).map((i) => ({ i: Number(i), role: null })))
@@ -201,73 +376,63 @@ const lookRefs = (L) => (Array.isArray(L.items) && L.items.length
 
 function reportCard(r, n) {
   const cid = String(r.customer_id || '').split('/').pop();
-  const badge = r.source === 'cached' ? '<span class="badge cache">reused, no cost</span>'
-    : r.source === 'generated' ? '<span class="badge live">written just now</span>' : '';
-  const head = '<div class="rhead"><h2>' + (r.rank ? '<span class="rank">#' + Number(r.rank) + '</span> ' : '') + esc(r.display_name) + '</h2>' +
-    '<span class="stats">' + money(r.net_spend_12m) + ' &middot; ' + r.orders_12m + ' orders &middot; ' + r.units_12m + ' items &middot; ' + r.discount_pct + '% avg discount ' + badge +
-    (cid ? ' &nbsp;<span class="cid">ID ' + esc(cid) + '</span>' : '') + '</span></div>';
-  if (r.error) return '<div class="report" id="c' + n + '">' + head + '<div class="msg err">' + esc(r.error) + '</div></div>';
+  const head = '<header class="report-header"><div><div class="report-title"><span class="rank">#' + Number(r.rank || 0) + '</span>' +
+    '<h2>' + esc(r.display_name) + '</h2></div>' +
+    '<p>' + money(r.net_spend_12m) + ' &middot; ' + r.orders_12m + ' orders &middot; ' + r.units_12m + ' items &middot; ' + r.discount_pct + '% avg discount' +
+    (r.source === 'cached' ? ' &middot; reused, no cost' : r.source === 'generated' ? ' &middot; written just now' : '') + '</p></div>' +
+    '<div class="report-meta"><small>ID ' + esc(cid) + '</small></div></header>';
+  if (r.error) return '<article class="report" id="c' + n + '">' + head + '<p class="notice err" style="margin-top:18px">' + esc(r.error) + '</p></article>';
   const items = r.products || [];
   const prof = r.profile || {};
-  const sizes = Object.entries(prof.sizes_by_category || {}).filter((e) => e[1].modal).map((e) => e[0] + ' ' + e[1].modal).join(', ');
-  const palette = (prof.top_colors || []).slice(0, 5).map((c) => c.color).join(', ');
   const wu = r.writeup || {};
   const wp = wu.profile || {};
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  const chips = Object.entries(prof.sizes_by_category || {}).filter((e) => e[1].modal)
+    .map((e) => '<span>' + esc(e[1].modal) + ' &middot; ' + esc(cap(e[0])) + '</span>')
+    .concat((wp.tags || []).map((t) => '<span>' + esc(t) + '</span>')).join('');
   const paras = (wp.paragraphs && wp.paragraphs.length ? wp.paragraphs
-    : (wu.preference_summary ? [wu.preference_summary] : [])).map(esc).join('<br><br>');
-  const chips = (wp.tags || []).map((t) => '<span class="badge">' + esc(t) + '</span>').join('');
-  const looks = (wu.looks || []).map((L) => {
+    : (wu.preference_summary ? [wu.preference_summary] : [])).map((p) => '<p>' + esc(p) + '</p>').join('');
+  const flag = wp.flag ? '<div class="flag">&#9873; Flag: ' + esc(wp.flag) + '</div>' : '';
+  const looks = (wu.looks || []).map((L, li) => {
     const refs = lookRefs(L).filter((x) => items[x.i]);
-    const total = refs.reduce((a, x) => a + Number(items[x.i].price || 0), 0);
     const why = L.why_her || L.why, how = L.the_look || L.how_to_style;
-    return '<div class="look"><h3>' + esc(L.name || 'Look') +
-      (L.tagline ? ' <span class="stats">&mdash; ' + esc(L.tagline) + '</span>' : '') + '</h3>' +
-      '<div class="stats">' + refs.length + ' piece' + (refs.length === 1 ? '' : 's') + ' &middot; ' + money(total) +
-      (L.occasion ? ' &middot; ' + esc(L.occasion) : '') + '</div>' +
-      '<div class="grid">' + refs.map((x) => productCard(items[x.i], x.role)).join('') + '</div>' +
-      (why || how ? '<div class="why">' +
-        (why ? '<p><strong>Why her.</strong> ' + esc(why) + '</p>' : '') +
-        (how ? '<p><strong>The look:</strong> ' + esc(how) + '</p>' : '') + '</div>' : '') +
-      (L.notes && L.notes.length ? '<div class="msg warn" style="margin:10px 0 0;font-size:12.5px">' +
-        '<strong>Stylist notes:</strong> ' + L.notes.map(esc).join(' ') + '</div>' : '') + '</div>';
+    return '<section class="look"><div class="look-heading"><div><h3>Look ' + (li + 1) + '</h3>' +
+      '<em>' + esc(L.name || '') + (L.tagline ? ' &mdash; ' + esc(cap(String(L.tagline))) : '') + '</em></div>' +
+      (L.occasion ? '<span>' + esc(L.occasion) + '</span>' : '') + '</div>' +
+      '<div class="product-grid' + (refs.length === 4 ? ' four' : '') + '">' +
+      refs.map((x) => productCard(items[x.i], x.role, false)).join('') + '</div>' +
+      (why || how ? '<div class="callout">' +
+        (why ? '<p><em>Why her:</em> ' + esc(why) + '</p>' : '') +
+        (how ? '<p><em>The look:</em> ' + esc(how) + '</p>' : '') + '</div>' : '') +
+      (L.notes && L.notes.length ? '<div class="flag">&#9873; ' + L.notes.map(esc).join(' ') + '</div>' : '') +
+      '</section>';
   }).join('');
   const used = new Set((wu.looks || []).reduce((a, L) => a.concat(lookRefs(L).map((x) => x.i)), []));
   const extras = items.filter((_, i) => !used.has(i));
-  const band = prof.price_band || {};
-  return '<div class="report" id="c' + n + '">' + head +
-    (r.note ? '<div class="msg info">' + esc(r.note) + '</div>' : '') +
-    (paras ? '<div class="summary">' + paras + '</div>' : '') +
+  return '<article class="report" id="c' + n + '">' + head +
+    (r.note ? '<p class="notice" style="margin-top:18px">' + esc(r.note) + '</p>' : '') +
     (chips ? '<div class="chips">' + chips + '</div>' : '') +
-    (wp.flag ? '<div class="msg warn"><strong>Flag:</strong> ' + esc(wp.flag) + '</div>' : '') + looks +
-    (extras.length ? '<div class="look"><h3>Also worth pulling</h3><div class="grid">' + extras.map((p) => productCard(p)).join('') + '</div></div>' : '') +
-    '<div class="prof">' + (sizes ? '<span>Sizes <b>' + esc(sizes) + '</b></span>' : '') +
-    (palette ? '<span>Palette <b>' + esc(palette) + '</b></span>' : '') +
-    (band.median ? '<span>Typical item <b>$' + band.median + '</b></span>' : '') +
-    '<span>Read from <b>' + (prof.items_seen || 0) + '</b> past items</span></div>' +
-    '</div>';
+    (paras || flag ? '<div class="writeup">' + paras + flag + '</div>' : '') + looks +
+    (extras.length ? '<section class="also"><h3>ALSO WORTH PULLING</h3><div class="extra-grid">' +
+      extras.map((p) => productCard(p, p.role, true)).join('') + '</div></section>' : '') +
+    '</article>';
 }
 
-async function runReport(force) {
-  const ids = Array.from(selected);
-  $('run').disabled = true; $('refresh').disabled = true;
-  say($('appMsg'), '<span class="spin"></span> &nbsp;Pulling live inventory and building ' + ids.length + ' report' + (ids.length > 1 ? 's' : '') + '. This takes a moment.', 'info');
-  $('reports').innerHTML = '';
-  try {
-    const out = await call({ action: 'run', customer_ids: ids, force_refresh: Boolean(force) });
-    say($('appMsg'), ''); meter(out.usage, out.budget_usd);
-    const reports = out.reports || [];
-    const nav = reports.length > 1
-      ? '<nav class="jump">' + reports.map((r, i) => '<a href="#c' + i + '">' +
-          (r.rank ? '#' + Number(r.rank) + ' &middot; ' : '') + esc(r.display_name) + '</a>').join('') + '</nav>'
-      : '';
-    $('reports').innerHTML = nav + reports.map((r, i) => reportCard(r, i)).join('');
-    show($('refresh'), true);
-  } catch (e) { say($('appMsg'), esc(e.message)); }
-  finally { $('run').disabled = selected.size === 0; $('refresh').disabled = false; }
+function renderReports(out) {
+  const reports = out.reports || [];
+  $('readCount').textContent = 'Showing ' + reports.length + ' client report' + (reports.length === 1 ? '' : 's');
+  $('jumpNav').innerHTML = reports.map((r, i) =>
+    '<button data-target="c' + i + '"' + (i === 0 ? ' class="active"' : '') + '>#' + Number(r.rank || 0) + ' ' + esc(r.display_name) + '</button>').join('');
+  $('reports').innerHTML = reports.map((r, i) => reportCard(r, i)).join('');
+  $('jumpNav').querySelectorAll('button').forEach((b) => {
+    b.onclick = () => {
+      $('jumpNav').querySelectorAll('button').forEach((x) => x.classList.remove('active'));
+      b.classList.add('active');
+      const t = document.getElementById(b.dataset.target);
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+  });
 }
-$('run').onclick = () => runReport(false);
-$('refresh').onclick = () => runReport(true);
-$('clear').onclick = () => { selected.clear(); drawList(); sync(); };
 
 async function boot() {
   const s = await sb.auth.getSession();
@@ -275,13 +440,14 @@ async function boot() {
   show($('loginView'), !session); show($('appView'), Boolean(session));
   if (!session) return;
   $('whoami').textContent = session.user.email;
+  setMode('pick');
   try {
     const out = await call({ action: 'customers' });
     customers = out.customers || []; MAX = out.max_per_run || 5;
     meter(out.usage, out.budget_usd);
-    if (!out.ai_enabled) say($('appMsg'), 'Styling write-ups are currently switched off. Product matching still works.', 'info');
+    if (!out.ai_enabled) say('Styling write-ups are currently switched off. Product matching still works.', '');
     drawList(); sync();
-  } catch (e) { say($('appMsg'), esc(e.message)); }
+  } catch (e) { say(esc(e.message)); }
 }
 boot();
 </script></body></html>
