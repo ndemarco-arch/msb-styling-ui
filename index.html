@@ -40,9 +40,14 @@ input:focus{outline:none;border-color:var(--rose)}
 .pick .nm{font-weight:600;font-size:14px}
 .pick .mt{font-size:12px;color:var(--muted);margin-top:2px}
 .flag{display:inline-block;font-size:10.5px;color:var(--warn);border:1px solid #e8d3bb;background:#fdf6ee;border-radius:4px;padding:1px 5px;margin-top:5px}
-.report{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+.report{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px;scroll-margin-top:58px}
 .rhead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:17px;flex-wrap:wrap}
 .rhead h2{font-size:21px}
+.rank{display:inline-block;font-size:11.5px;font-weight:600;font-family:Inter,system-ui,sans-serif;color:#fff;background:var(--rose-dk);border-radius:99px;padding:3px 9px;vertical-align:2px;letter-spacing:.04em}
+.cid{font-size:11px;color:#b3a89e;font-variant-numeric:tabular-nums}
+nav.jump{position:sticky;top:0;z-index:20;background:rgba(250,246,241,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:9px 2px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:6px}
+nav.jump a{font-size:12px;text-decoration:none;color:var(--ink);background:#f1e9df;padding:4px 11px;border-radius:99px;white-space:nowrap}
+nav.jump a:hover{background:var(--rose-dk);color:#fff}
 .stats{font-size:12.5px;color:var(--muted)}
 .badge{font-size:11px;border-radius:11px;padding:3px 9px;border:1px solid var(--line);color:var(--muted)}
 .badge.live{color:var(--good);border-color:#cadaca;background:#f4f8f4}
@@ -51,10 +56,15 @@ input:focus{outline:none;border-color:var(--rose)}
 .prof{display:flex;gap:22px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:20px}
 .prof b{color:var(--ink);font-weight:600}
 .look{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
-.look h3{font-size:16px;margin-bottom:12px}
+.look h3{font-size:16px;margin-bottom:3px}
 .look .txt{font-size:13.5px;margin:10px 0}
+.why{background:#fbf7f2;border-left:3px solid var(--rose-dk);border-radius:0 8px 8px 0;padding:12px 15px;margin:12px 0 0;font-size:13.5px;max-width:1000px}
+.why p{margin:0 0 8px}
+.why p:last-child{margin:0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin:12px 0}
-.item{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.item{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:.15s}
+a.item:hover{border-color:var(--rose-dk);box-shadow:0 4px 14px rgba(168,124,124,.14);transform:translateY(-2px)}
+.item .role{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--rose-dk);font-weight:600}
 .item .ph{aspect-ratio:2/3;background:#f4ece4;position:relative;overflow:hidden}
 .item .ph img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
 .item .ph .fb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--muted);padding:12px}
@@ -66,6 +76,8 @@ input:focus{outline:none;border-color:var(--rose)}
 .msg{padding:13px 16px;border-radius:9px;font-size:13.5px;margin-bottom:14px}
 .msg.err{background:#fdf1f1;border:1px solid #eccfcf;color:#8f4a4a}
 .msg.info{background:#f7f4f1;border:1px solid var(--line);color:var(--muted)}
+.msg.warn{background:#fdf6ee;border:1px solid #e8d3bb;color:#7a5c1e}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin:-8px 0 20px}
 .spin{display:inline-block;width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--rose-dk);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px}
 @keyframes sp{to{transform:rotate(360deg)}}
 .hide{display:none!important}
@@ -163,43 +175,73 @@ function sync() {
   $('count').textContent = selected.size ? selected.size + ' of ' + MAX + ' selected' : 'Select up to ' + MAX + ' clients';
 }
 
-function productCard(p) {
-  const img = p.image ? '<img src="' + esc(p.image) + '" alt="" loading="lazy">' : '';
-  return '<div class="item"><div class="ph"><div class="fb">' + esc(p.title) + '</div>' + img + '</div>' +
-    '<div class="meta"><span class="t">' + esc(p.title) + '</span>' +
-    '<span class="v">' + esc(p.vendor || '') + (p.size ? ' &middot; size ' + esc(p.size) : '') + '</span>' +
-    '<span class="stk">' + p.in_stock + ' in stock</span>' +
-    '<span class="p">' + money(p.price) + (p.url ? ' &nbsp;<a href="' + esc(p.url) + '" target="_blank" rel="noopener">view</a>' : '') +
-    '</span></div></div>';
+function productCard(p, role) {
+  const r = role || p.role || '';
+  const src = p.image ? esc(p.image + (String(p.image).indexOf('?') >= 0 ? '&' : '?') + 'width=600') : '';
+  const img = src ? '<img src="' + src + '" alt="' + esc(p.title) + '" loading="lazy">' : '';
+  const bits = [esc(p.vendor || ''), p.color ? esc(p.color) : '', p.size ? 'size ' + esc(p.size) : '']
+    .filter(Boolean).join(' &middot; ');
+  const inner = '<div class="ph"><div class="fb">' + esc(p.title) + '</div>' + img + '</div>' +
+    '<div class="meta">' + (r && r !== 'OTHER' ? '<span class="role">' + esc(r) + '</span>' : '') +
+    '<span class="t">' + esc(p.title) + '</span>' +
+    (bits ? '<span class="v">' + bits + '</span>' : '') +
+    '<span class="p">' + money(p.price) + '</span>' +
+    '<span class="stk">' + Number(p.in_stock || 0) + ' in stock</span></div>';
+  return p.url
+    ? '<a class="item" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + inner + '</a>'
+    : '<div class="item">' + inner + '</div>';
 }
 
-function reportCard(r) {
-  if (r.error) return '<div class="report"><div class="rhead"><h2>' + esc(r.display_name) + '</h2></div><div class="msg err">' + esc(r.error) + '</div></div>';
+// Accept BOTH write-up shapes — current (items:[{i,role}]) and legacy
+// (product_indexes:[i]) — so a backend field rename can never blank the page again.
+const lookRefs = (L) => (Array.isArray(L.items) && L.items.length
+  ? L.items.map((it) => ({ i: Number(it && it.i), role: it && it.role }))
+  : (L.product_indexes || []).map((i) => ({ i: Number(i), role: null })))
+  .filter((x) => Number.isInteger(x.i));
+
+function reportCard(r, n) {
+  const cid = String(r.customer_id || '').split('/').pop();
+  const badge = r.source === 'cached' ? '<span class="badge cache">reused, no cost</span>'
+    : r.source === 'generated' ? '<span class="badge live">written just now</span>' : '';
+  const head = '<div class="rhead"><h2>' + (r.rank ? '<span class="rank">#' + Number(r.rank) + '</span> ' : '') + esc(r.display_name) + '</h2>' +
+    '<span class="stats">' + money(r.net_spend_12m) + ' &middot; ' + r.orders_12m + ' orders &middot; ' + r.units_12m + ' items &middot; ' + r.discount_pct + '% avg discount ' + badge +
+    (cid ? ' &nbsp;<span class="cid">ID ' + esc(cid) + '</span>' : '') + '</span></div>';
+  if (r.error) return '<div class="report" id="c' + n + '">' + head + '<div class="msg err">' + esc(r.error) + '</div></div>';
   const items = r.products || [];
   const prof = r.profile || {};
   const sizes = Object.entries(prof.sizes_by_category || {}).filter((e) => e[1].modal).map((e) => e[0] + ' ' + e[1].modal).join(', ');
   const palette = (prof.top_colors || []).slice(0, 5).map((c) => c.color).join(', ');
   const wu = r.writeup || {};
-  const badge = r.source === 'cached' ? '<span class="badge cache">reused, no cost</span>'
-    : r.source === 'generated' ? '<span class="badge live">written just now</span>' : '';
+  const wp = wu.profile || {};
+  const paras = (wp.paragraphs && wp.paragraphs.length ? wp.paragraphs
+    : (wu.preference_summary ? [wu.preference_summary] : [])).map(esc).join('<br><br>');
+  const chips = (wp.tags || []).map((t) => '<span class="badge">' + esc(t) + '</span>').join('');
   const looks = (wu.looks || []).map((L) => {
-    const pics = (L.product_indexes || []).map((i) => items[i]).filter(Boolean);
-    return '<div class="look"><h3>' + esc(L.name || 'Look') + '</h3><div class="grid">' + pics.map(productCard).join('') + '</div>' +
-      (L.why ? '<div class="txt"><strong>Why it suits her.</strong> ' + esc(L.why) + '</div>' : '') +
-      (L.how_to_style ? '<div class="txt"><strong>How to style it.</strong> ' + esc(L.how_to_style) + '</div>' : '') + '</div>';
+    const refs = lookRefs(L).filter((x) => items[x.i]);
+    const total = refs.reduce((a, x) => a + Number(items[x.i].price || 0), 0);
+    const why = L.why_her || L.why, how = L.the_look || L.how_to_style;
+    return '<div class="look"><h3>' + esc(L.name || 'Look') +
+      (L.tagline ? ' <span class="stats">&mdash; ' + esc(L.tagline) + '</span>' : '') + '</h3>' +
+      '<div class="stats">' + refs.length + ' piece' + (refs.length === 1 ? '' : 's') + ' &middot; ' + money(total) +
+      (L.occasion ? ' &middot; ' + esc(L.occasion) : '') + '</div>' +
+      '<div class="grid">' + refs.map((x) => productCard(items[x.i], x.role)).join('') + '</div>' +
+      (why || how ? '<div class="why">' +
+        (why ? '<p><strong>Why her.</strong> ' + esc(why) + '</p>' : '') +
+        (how ? '<p><strong>The look:</strong> ' + esc(how) + '</p>' : '') + '</div>' : '') + '</div>';
   }).join('');
-  const used = new Set((wu.looks || []).reduce((a, L) => a.concat(L.product_indexes || []), []));
+  const used = new Set((wu.looks || []).reduce((a, L) => a.concat(lookRefs(L).map((x) => x.i)), []));
   const extras = items.filter((_, i) => !used.has(i));
   const band = prof.price_band || {};
-  return '<div class="report"><div class="rhead"><h2>' + esc(r.display_name) + '</h2>' +
-    '<span class="stats">' + money(r.net_spend_12m) + ' &middot; ' + r.orders_12m + ' orders &middot; ' + r.units_12m + ' items &middot; ' + r.discount_pct + '% avg discount ' + badge + '</span></div>' +
+  return '<div class="report" id="c' + n + '">' + head +
     (r.note ? '<div class="msg info">' + esc(r.note) + '</div>' : '') +
-    (wu.preference_summary ? '<div class="summary">' + esc(wu.preference_summary) + '</div>' : '') +
+    (paras ? '<div class="summary">' + paras + '</div>' : '') +
+    (chips ? '<div class="chips">' + chips + '</div>' : '') +
+    (wp.flag ? '<div class="msg warn"><strong>Flag:</strong> ' + esc(wp.flag) + '</div>' : '') + looks +
+    (extras.length ? '<div class="look"><h3>Also worth pulling</h3><div class="grid">' + extras.map((p) => productCard(p)).join('') + '</div></div>' : '') +
     '<div class="prof">' + (sizes ? '<span>Sizes <b>' + esc(sizes) + '</b></span>' : '') +
     (palette ? '<span>Palette <b>' + esc(palette) + '</b></span>' : '') +
     (band.median ? '<span>Typical item <b>$' + band.median + '</b></span>' : '') +
-    '<span>Read from <b>' + (prof.items_seen || 0) + '</b> past items</span></div>' + looks +
-    (extras.length ? '<div class="look"><h3>Also worth pulling</h3><div class="grid">' + extras.map(productCard).join('') + '</div></div>' : '') +
+    '<span>Read from <b>' + (prof.items_seen || 0) + '</b> past items</span></div>' +
     '</div>';
 }
 
@@ -211,7 +253,12 @@ async function runReport(force) {
   try {
     const out = await call({ action: 'run', customer_ids: ids, force_refresh: Boolean(force) });
     say($('appMsg'), ''); meter(out.usage, out.budget_usd);
-    $('reports').innerHTML = (out.reports || []).map(reportCard).join('');
+    const reports = out.reports || [];
+    const nav = reports.length > 1
+      ? '<nav class="jump">' + reports.map((r, i) => '<a href="#c' + i + '">' +
+          (r.rank ? '#' + Number(r.rank) + ' &middot; ' : '') + esc(r.display_name) + '</a>').join('') + '</nav>'
+      : '';
+    $('reports').innerHTML = nav + reports.map((r, i) => reportCard(r, i)).join('');
     show($('refresh'), true);
   } catch (e) { say($('appMsg'), esc(e.message)); }
   finally { $('run').disabled = selected.size === 0; $('refresh').disabled = false; }
