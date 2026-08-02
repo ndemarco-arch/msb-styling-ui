@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Styling &middot; Mainstream Boutique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Mainstream Boutique design system — tokens lifted from
+   mainstreamboutique.com (Nunito Sans body, Garamond headings,
+   #232323 buttons, #c16452 clay accent, cream/warm neutrals).
+   ============================================================ */
+:root{
+  --cream:#eae3df; --warm:#faf7f2; --blush:#fbeeee; --charcoal:#414042;
+  --ink:#171717; --body:#5c5c5c; --clay:#c16452; --btn:#232323;
+  --line:#dfe3e8; --line-warm:#e3dbd6;
+  --serif:'EB Garamond',Garamond,Baskerville,Caslon,serif;
+  --sans:'Nunito Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--body);font:400 15px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--ink);margin:0;line-height:1.2}
+a{color:var(--clay)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.hide{display:none !important}
+
+/* ---- buttons (site spec: uppercase, .08em, 13px, 3px radius) ---- */
+.btn{font:600 13px var(--sans);letter-spacing:.08em;text-transform:uppercase;
+  background:var(--btn);color:#fff;border:1px solid var(--btn);border-radius:3px;
+  padding:15px 30px;cursor:pointer;transition:.2s}
+.btn:hover:not(:disabled){background:var(--clay);border-color:var(--clay)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.btn.alt{background:#fff;color:var(--btn)}
+.btn.alt:hover:not(:disabled){background:var(--btn);color:#fff;border-color:var(--btn)}
+.btn.wide{width:100%}
+.link{background:none;border:0;color:var(--clay);font:600 12px var(--sans);
+  letter-spacing:.04em;cursor:pointer;padding:0;text-decoration:underline}
+.link.quiet{color:var(--body);text-decoration:none}
+.link.quiet:hover{color:var(--clay)}
+
+/* ---- sign in ---- */
+.signin{min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;background:var(--warm);padding:40px 20px}
+.signin .logo{width:250px;margin-bottom:38px}
+.signin .card{background:#fff;border:1px solid var(--line-warm);padding:44px 40px;
+  width:100%;max-width:410px}
+.signin h1{font-size:29px;text-align:center}
+.signin .sub{text-align:center;font-size:14px;margin-top:7px}
+.signin .yasl{margin-top:34px;width:150px;opacity:.5}
+label.f{display:block;font:600 11px var(--sans);letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink);margin:24px 0 7px}
+input[type=text],input[type=email],input[type=password],input[type=search],input[type=number]{
+  width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:3px;
+  font:400 16px var(--sans);color:var(--ink);background:#fff}
+input:focus{outline:none;border-color:var(--clay)}
+
+/* ---- site header ---- */
+.site-head{border-bottom:1px solid var(--line);background:#fff;
+  position:sticky;top:0;z-index:20}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding-top:18px;padding-bottom:18px}
+.site-head .logo{width:210px;display:block}
+.head-right{display:flex;align-items:center;gap:22px;font-size:12px;text-align:right}
+.head-right .who{color:var(--ink);font-weight:600}
+.budget{min-width:180px}
+.budget .bar{height:3px;background:var(--cream);margin-top:5px}
+.budget .bar i{display:block;height:100%;background:var(--clay)}
+.budget b{color:var(--ink);font-weight:700}
+
+/* ---- page intro ---- */
+.intro{background:var(--warm);border-bottom:1px solid var(--line);
+  padding:52px 0 46px;text-align:center}
+.eyebrow{font:600 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--clay);margin-bottom:14px}
+.intro h1{font-size:46px}
+.intro p{max-width:600px;margin:12px auto 0;font-size:15px}
+
+/* ---- search ---- */
+.searchbar{max-width:560px;margin:30px auto 0;position:relative}
+.searchbar input{padding-left:44px;padding-right:40px}
+.searchbar .ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  width:15px;height:15px;border:1.5px solid #a8a09b;border-radius:50%}
+.searchbar .ico:after{content:"";position:absolute;right:-6px;bottom:-4px;width:7px;height:1.5px;
+  background:#a8a09b;transform:rotate(45deg)}
+.searchbar .x{position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:0;color:var(--body);font-size:19px;cursor:pointer;line-height:1;padding:4px}
+
+/* ---- list ---- */
+.listwrap{padding:44px 0 0}
+.listhead{display:flex;align-items:baseline;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;padding-bottom:16px}
+.listhead h2{font-size:26px}
+.listhead .meta{font-size:13px}
+.cols,.row{display:grid;
+  grid-template-columns:38px 52px minmax(180px,2.2fr) 1fr 1fr 1fr 1fr;
+  gap:14px;align-items:center}
+.cols{padding:0 16px 10px;border-bottom:1px solid var(--ink);
+  font:600 10px var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--ink)}
+.cols .num,.row .num{text-align:right}
+.row{width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid var(--line);
+  padding:14px 16px;font:inherit;color:inherit;cursor:pointer;transition:.12s}
+.row:hover:not(:disabled){background:var(--warm)}
+.row.on{background:var(--warm);box-shadow:inset 3px 0 0 var(--clay)}
+.row.off{opacity:.35;cursor:not-allowed}
+.box{width:16px;height:16px;border:1px solid #b9b2ad;border-radius:2px;
+  position:relative;background:#fff}
+.row.on .box{background:var(--clay);border-color:var(--clay)}
+.row.on .box:after{content:"";position:absolute;left:4.5px;top:1px;width:4px;height:9px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.rank{font:700 12px var(--sans);color:var(--clay);letter-spacing:.06em}
+.nm{font-family:var(--serif);font-size:19px;color:var(--ink);line-height:1.25}
+.em{font-size:11.5px;color:var(--body);display:block}
+.num{font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums}
+.num small{display:block;font:600 9px var(--sans);letter-spacing:.11em;
+  text-transform:uppercase;color:var(--body);margin-top:1px}
+.disc{font-size:13px;font-variant-numeric:tabular-nums}
+.disc.heavy{color:var(--clay);font-weight:700}
+.viewmore{text-align:center;padding:30px 0 8px}
+.viewmore .count{display:block;font-size:12px;margin-bottom:14px}
+.noresults{padding:56px 20px;text-align:center;border-bottom:1px solid var(--line)}
+.noresults h3{font-size:22px;font-style:italic;font-family:var(--serif)}
+.noresults p{margin-top:8px;font-size:14px}
+
+/* ---- run bar ---- */
+.runbar{position:sticky;bottom:0;z-index:15;background:var(--charcoal);color:#fff;margin-top:36px}
+.runbar .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  padding-top:16px;padding-bottom:16px}
+.runbar .n{font:600 12px var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.runbar .sp{flex:1}
+.runbar .btn{background:#fff;color:var(--btn);border-color:#fff}
+.runbar .btn:hover:not(:disabled){background:var(--clay);border-color:var(--clay);color:#fff}
+.runbar .link{color:#fff;opacity:.85}
+.runbar .prog{width:100%;height:2px;background:rgba(255,255,255,.2)}
+.runbar .prog i{display:block;height:100%;background:var(--clay);transition:width .3s}
+
+/* ---- notices ---- */
+.note{padding:14px 17px;border-radius:3px;font-size:13.5px;margin:24px 0}
+.note.err{background:var(--blush);border:1px solid #e6c9c9;color:#8f3a3a}
+.note.info{background:var(--warm);border:1px solid var(--line-warm);color:var(--ink)}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid var(--line);
+  border-top-color:var(--clay);border-radius:50%;animation:sp .7s linear infinite;
+  vertical-align:-1px;margin-right:9px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* ---- reports ---- */
+.jump{position:sticky;top:73px;z-index:10;background:#fff;border-bottom:1px solid var(--line);
+  padding:12px 0;display:flex;gap:8px;flex-wrap:wrap}
+.jump a{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;
+  text-decoration:none;color:var(--body);border:1px solid var(--line);padding:7px 13px}
+.jump a:hover{border-color:var(--clay);color:var(--clay)}
+.report{border:1px solid var(--line);padding:40px;margin:26px 0;scroll-margin-top:150px;background:#fff}
+.rhead{display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+  flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:20px}
+.rhead h2{font-size:36px}
+.rhead .rk{font:700 11px var(--sans);letter-spacing:.14em;color:var(--clay);
+  text-transform:uppercase;display:block;margin-bottom:6px}
+.rmeta{font-size:12px;text-align:right}
+.tag{display:inline-block;font:600 10px var(--sans);letter-spacing:.09em;
+  text-transform:uppercase;border:1px solid var(--line);padding:3px 8px;margin-left:8px;color:var(--body)}
+.tag.fresh{border-color:var(--clay);color:var(--clay)}
+.summary{border-left:2px solid var(--clay);padding:2px 0 2px 22px;margin:26px 0}
+.summary p{margin:0 0 12px;font-size:15px}
+.summary p:last-child{margin:0}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:26px}
+.chip{background:var(--cream);padding:5px 11px;border-radius:2px;
+  font:600 11px var(--sans);letter-spacing:.05em;color:var(--ink)}
+.flagbox{background:var(--blush);border-left:2px solid var(--clay);padding:14px 18px;
+  font-size:13.5px;color:var(--ink);margin-bottom:26px}
+.look{border-top:1px solid var(--line);padding-top:28px;margin-top:28px}
+.look h3{font-size:24px}
+.look .tl{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--body)}
+.look .meta{font:600 10px var(--sans);letter-spacing:.12em;text-transform:uppercase;margin-top:7px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;margin-top:20px}
+.item{border:1px solid var(--line);text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;transition:.15s;background:#fff}
+a.item:hover{border-color:var(--clay)}
+.item .ph{aspect-ratio:2/3;background:var(--cream);position:relative;overflow:hidden}
+.item .ph img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.item .fb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-size:11px;padding:14px}
+.item .role{position:absolute;left:0;top:0;z-index:2;background:var(--charcoal);color:#fff;
+  font:600 9px var(--sans);letter-spacing:.13em;padding:4px 8px}
+.item .m{padding:12px;display:flex;flex-direction:column;gap:3px;flex:1}
+.item .t{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.25}
+.item .v{font-size:11px}
+.item .pr{margin-top:auto;padding-top:8px;font:700 14px var(--sans);color:var(--ink)}
+.item .st{font:600 10px var(--sans);letter-spacing:.06em;text-transform:uppercase}
+.item .st.low{color:var(--clay)}
+.why{background:var(--warm);padding:17px 20px;margin-top:18px;font-size:13.5px}
+.why p{margin:0 0 9px}.why p:last-child{margin:0}
+.why strong{color:var(--ink)}
+.stylist{border-left:2px solid var(--clay);padding:11px 16px;margin-top:14px;font-size:12.5px;background:#fff}
+.prof{display:flex;gap:28px;flex-wrap:wrap;border-top:1px solid var(--line);
+  margin-top:32px;padding-top:18px;font-size:12px}
+.prof b{color:var(--ink);font-weight:700}
+footer{text-align:center;font-size:12px;padding:44px 0 60px;background:var(--warm);
+  border-top:1px solid var(--line);margin-top:50px}
+footer img{width:130px;opacity:.45;display:block;margin:0 auto 14px}
+
+@media(max-width:860px){
+  .cols,.row{grid-template-columns:32px 40px 1fr 1fr;gap:10px}
+  .cols .c-orders,.row .c-orders,.cols .c-items,.row .c-items{display:none}
+  .intro h1{font-size:33px}.report{padding:26px 20px}.rhead h2{font-size:27px}
+  .site-head .logo{width:160px}.budget{display:none}
+}
+</style></head><body>
+
+<!-- ==================== SIGN IN ==================== -->
+<div id="signinView" class="signin">
+  <img class="logo" alt="Mainstream Boutique"
+       src="https://mainstreamboutique.com/cdn/shop/files/MB_Logo_Black-01.png?v=1644766812&width=470">
+  <div class="card">
+    <h1>Styling</h1>
+    <div class="sub">Sign in with your Mainstream Boutique account.</div>
+    <label class="f" for="em">Email</label>
+    <input id="em" type="email" autocomplete="username">
+    <label class="f" for="pw">Password</label>
+    <input id="pw" type="password" autocomplete="current-password">
+    <div id="signinMsg" class="note err hide"></div>
+    <button class="btn wide" id="signIn" style="margin-top:28px">Sign in</button>
+  </div>
+  <img class="yasl" alt="You Are So Loved"
+       src="https://mainstreamboutique.com/cdn/shop/files/YASL-Horizontal-01.png?v=1761925949&width=600">
+</div>
+
+<!-- ==================== APP ==================== -->
+<div id="appView" class="hide">
+
+  <header class="site-head">
+    <div class="wrap">
+      <img class="logo" alt="Mainstream Boutique"
+           src="https://mainstreamboutique.com/cdn/shop/files/MB_Logo_Black-01.png?v=1644766812&width=470">
+      <div class="head-right">
+        <div><span class="who" id="whoami"></span><br><button class="link quiet" id="signOut">Sign out</button></div>
+        <div class="budget" id="budget"></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div class="wrap">
+      <div class="eyebrow">Apple Valley</div>
+      <h1>Styling</h1>
+      <p>Personal lookbooks built from her purchase history and what&rsquo;s on the floor right now.</p>
+      <div class="searchbar">
+        <span class="ico"></span>
+        <input id="search" type="search" placeholder="Search for a client by name or email" autocomplete="off">
+        <button class="x hide" id="clearSearch" aria-label="Clear search">&times;</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div id="appMsg" class="note err hide"></div>
+
+    <div class="listwrap">
+      <div class="listhead">
+        <h2 id="listTitle">Top clients</h2>
+        <div class="meta" id="listMeta"></div>
+      </div>
+
+      <div class="cols">
+        <span></span><span>Rank</span><span>Client</span>
+        <span class="num">12-mo spend</span>
+        <span class="num c-orders">Orders</span>
+        <span class="num c-items">Items</span>
+        <span class="num">Avg disc.</span>
+      </div>
+
+      <div id="list"></div>
+
+      <div class="noresults hide" id="noresults">
+        <h3>No clients by that name</h3>
+        <p>Try a partial name, or clear the search to browse by spend.</p>
+      </div>
+
+      <div class="viewmore hide" id="viewmoreWrap">
+        <span class="count" id="viewmoreCount"></span>
+        <button class="btn alt" id="viewmore">View more clients</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="runbar">
+    <div class="prog"><i id="prog" style="width:0"></i></div>
+    <div class="wrap">
+      <span class="n" id="count">No clients selected</span>
+      <span class="sp"></span>
+      <button class="link hide" id="refresh">Refresh &amp; rewrite</button>
+      <button class="link hide" id="clearSel">Clear</button>
+      <button class="btn" id="run" disabled>Create lookbooks</button>
+    </div>
+  </div>
+
+  <div class="wrap"><div id="reports"></div></div>
+
+  <footer>
+    <img alt="You Are So Loved"
+         src="https://mainstreamboutique.com/cdn/shop/files/YASL-Horizontal-01.png?v=1761925949&width=600">
+    Stock reflects Apple Valley at the moment the lookbook ran &mdash; not items already held in a fitting room.
+  </footer>
+</div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const URL_ = 'https://vxgnamtncvzzmqarmeqk.supabase.co';
+const KEY_ = 'sb_publishable_Ga0OS9SJEwN_onYKxYtftw_0iIF366s';
+const FN = URL_ + '/functions/v1/styling-api';
+const sb = createClient(URL_, KEY_);
+
+const PAGE = 25;                     // clients revealed per "view more"
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+const money = (n) => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
+const show = (el, on) => el.classList.toggle('hide', !on);
+function say(el, text, kind) { el.className = 'note ' + (kind || 'err'); el.innerHTML = text; show(el, Boolean(text)); }
+
+let ALL = [];              // every client the backend returned, spend-sorted
+let shown = PAGE;          // how many rows are revealed
+let query = '';
+let selected = new Set();
+let serverMax = 5;         // config.max_customers_per_run — the per-request ceiling
+
+async function call(payload) {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { location.reload(); return; }
+  const res = await fetch(FN, { method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token },
+    body: JSON.stringify(payload) });
+  const body = await res.json().catch(() => ({ error: 'Server returned an unreadable response.' }));
+  if (!res.ok) throw new Error(body.error || ('Request failed (' + res.status + ')'));
+  return body;
+}
+
+/* ---------------- sign in ---------------- */
+$('signIn').onclick = async () => {
+  const b = $('signIn'); b.disabled = true; b.textContent = 'Signing in...'; say($('signinMsg'), '');
+  const { error } = await sb.auth.signInWithPassword({ email: $('em').value.trim(), password: $('pw').value });
+  b.disabled = false; b.textContent = 'Sign in';
+  if (error) { say($('signinMsg'), esc(error.message)); return; }
+  boot();
+};
+$('pw').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('signIn').click(); });
+$('signOut').onclick = async () => { await sb.auth.signOut(); location.reload(); };
+
+/* ---------------- budget ---------------- */
+function budget(u, total) {
+  const spent = Number((u && u.spend_usd) || 0);
+  const pct = total ? Math.min(100, (spent / total) * 100) : 0;
+  $('budget').innerHTML = '<b>$' + spent.toFixed(2) + '</b> of $' + Number(total).toFixed(0) + ' this month'
+    + '<div class="bar"><i style="width:' + pct.toFixed(1) + '%"></i></div>'
+    + '<div style="margin-top:4px">' + ((u && u.generated) || 0) + ' written &middot; '
+    + ((u && u.cached) || 0) + ' reused</div>';
+}
+
+/* ---------------- the list ---------------- */
+function matches() {
+  const q = query.trim().toLowerCase();
+  if (!q) return ALL;
+  return ALL.filter((c) => (c.display_name || '').toLowerCase().indexOf(q) >= 0
+    || (c.email || '').toLowerCase().indexOf(q) >= 0);
+}
+
+function drawList() {
+  const found = matches();
+  const searching = Boolean(query.trim());
+  const rows = searching ? found : found.slice(0, shown);
+
+  $('listTitle').textContent = searching ? 'Search results' : 'Top clients';
+  $('listMeta').innerHTML = searching
+    ? found.length + ' match' + (found.length === 1 ? '' : 'es')
+    : 'By spend &middot; last 12 months';
+
+  $('list').innerHTML = rows.map((c) => {
+    const on = selected.has(c.customer_id);
+    const heavy = Number(c.discount_pct) >= 35;
+    return '<button class="row' + (on ? ' on' : '') + '" data-id="' + esc(c.customer_id) + '">'
+      + '<span class="box"></span>'
+      + '<span class="rank">#' + c.rank + '</span>'
+      + '<span><span class="nm">' + esc(c.display_name || ('Client #' + c.rank)) + '</span>'
+      + (c.email ? '<span class="em">' + esc(c.email) + '</span>' : '') + '</span>'
+      + '<span class="num">' + money(c.net_spend_12m) + '</span>'
+      + '<span class="num c-orders">' + c.orders_12m + '<small>orders</small></span>'
+      + '<span class="num c-items">' + c.units_12m + '<small>items</small></span>'
+      + '<span class="num disc' + (heavy ? ' heavy' : '') + '">' + c.discount_pct + '%</span>'
+      + '</button>';
+  }).join('');
+
+  $('list').querySelectorAll('.row').forEach((b) => {
+    b.onclick = () => {
+      const id = b.dataset.id;
+      if (selected.has(id)) selected.delete(id); else selected.add(id);
+      drawList();
+    };
+  });
+
+  show($('noresults'), searching && found.length === 0);
+  const more = !searching && ALL.length > shown;
+  show($('viewmoreWrap'), more);
+  if (more) {
+    const next = Math.min(PAGE, ALL.length - shown);
+    $('viewmoreCount').textContent = 'Showing ' + shown + ' of ' + ALL.length + ' clients';
+    $('viewmore').textContent = 'View next ' + next + ' clients';
+  }
+  sync();
+}
+
+$('viewmore').onclick = () => { shown += PAGE; drawList(); };
+
+$('search').addEventListener('input', () => {
+  query = $('search').value;
+  show($('clearSearch'), Boolean(query));
+  drawList();
+});
+$('clearSearch').onclick = () => {
+  query = ''; $('search').value = ''; show($('clearSearch'), false); drawList(); $('search').focus();
+};
+
+function sync() {
+  const n = selected.size;
+  $('run').disabled = n === 0;
+  show($('clearSel'), n > 0);
+  const batches = Math.ceil(n / serverMax);
+  $('count').textContent = n === 0 ? 'No clients selected'
+    : n + ' client' + (n === 1 ? '' : 's') + ' selected'
+      + (batches > 1 ? '  ·  ' + batches + ' batches' : '');
+}
+$('clearSel').onclick = () => { selected.clear(); drawList(); };
+
+/* ---------------- report rendering ----------------
+   Tolerates both the v19 write-up shape (items:[{i,role}], why_her, the_look,
+   profile.paragraphs) and the legacy one, so a backend rename can't blank the page. */
+const lookRefs = (L) => (Array.isArray(L.items) && L.items.length
+  ? L.items.map((it) => ({ i: Number(it && it.i), role: it && it.role }))
+  : (L.product_indexes || []).map((i) => ({ i: Number(i), role: null })))
+  .filter((x) => Number.isInteger(x.i));
+
+function productCard(p, role) {
+  const r = role || p.role || '';
+  const src = p.image ? esc(p.image + (String(p.image).indexOf('?') >= 0 ? '&' : '?') + 'width=600') : '';
+  const bits = [esc(p.vendor || ''), p.color ? esc(p.color) : '', p.size ? 'size ' + esc(p.size) : '']
+    .filter(Boolean).join(' &middot; ');
+  const low = Number(p.in_stock || 0) <= 2;
+  const inner = '<div class="ph">' + (r && r !== 'OTHER' ? '<span class="role">' + esc(r) + '</span>' : '')
+    + '<div class="fb">' + esc(p.title) + '</div>'
+    + (src ? '<img src="' + src + '" alt="' + esc(p.title) + '" loading="lazy">' : '') + '</div>'
+    + '<div class="m"><span class="t">' + esc(p.title) + '</span>'
+    + (bits ? '<span class="v">' + bits + '</span>' : '')
+    + '<span class="pr">' + money(p.price) + '</span>'
+    + '<span class="st' + (low ? ' low' : '') + '">' + Number(p.in_stock || 0) + ' in stock</span></div>';
+  return p.url ? '<a class="item" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + inner + '</a>'
+    : '<div class="item">' + inner + '</div>';
+}
+
+function reportCard(r, n) {
+  const badge = r.source === 'cached' ? '<span class="tag">reused</span>'
+    : r.source === 'generated' ? '<span class="tag fresh">written just now</span>' : '';
+  const head = '<div class="rhead"><div>'
+    + (r.rank ? '<span class="rk">Rank ' + Number(r.rank) + '</span>' : '')
+    + '<h2>' + esc(r.display_name) + '</h2></div><div class="rmeta">'
+    + money(r.net_spend_12m) + ' &middot; ' + r.orders_12m + ' orders &middot; '
+    + r.units_12m + ' items &middot; ' + r.discount_pct + '% avg discount' + badge + '</div></div>';
+  if (r.error) return '<div class="report" id="c' + n + '">' + head
+    + '<div class="note err">' + esc(r.error) + '</div></div>';
+
+  const items = r.products || [], prof = r.profile || {}, wu = r.writeup || {}, wp = wu.profile || {};
+  const paras = (wp.paragraphs && wp.paragraphs.length ? wp.paragraphs
+    : (wu.preference_summary ? [wu.preference_summary] : [])).map((p) => '<p>' + esc(p) + '</p>').join('');
+  const chips = (wp.tags || []).map((t) => '<span class="chip">' + esc(t) + '</span>').join('');
+
+  const looks = (wu.looks || []).map((L) => {
+    const refs = lookRefs(L).filter((x) => items[x.i]);
+    const total = refs.reduce((a, x) => a + Number(items[x.i].price || 0), 0);
+    const why = L.why_her || L.why, how = L.the_look || L.how_to_style;
+    return '<div class="look"><h3>' + esc(L.name || 'Look')
+      + (L.tagline ? ' <span class="tl">&mdash; ' + esc(L.tagline) + '</span>' : '') + '</h3>'
+      + '<div class="meta">' + refs.length + ' piece' + (refs.length === 1 ? '' : 's') + ' &middot; '
+      + money(total) + (L.occasion ? ' &middot; ' + esc(L.occasion) : '') + '</div>'
+      + '<div class="grid">' + refs.map((x) => productCard(items[x.i], x.role)).join('') + '</div>'
+      + (why || how ? '<div class="why">'
+        + (why ? '<p><strong>Why her.</strong> ' + esc(why) + '</p>' : '')
+        + (how ? '<p><strong>The look.</strong> ' + esc(how) + '</p>' : '') + '</div>' : '')
+      + (L.notes && L.notes.length ? '<div class="stylist"><strong>Stylist note:</strong> '
+        + L.notes.map(esc).join(' ') + '</div>' : '') + '</div>';
+  }).join('');
+
+  const used = {};
+  (wu.looks || []).forEach((L) => lookRefs(L).forEach((x) => { used[x.i] = 1; }));
+  const extras = items.filter((_, i) => !used[i]);
+  const sizes = Object.keys(prof.sizes_by_category || {})
+    .filter((k) => prof.sizes_by_category[k].modal)
+    .map((k) => k + ' ' + prof.sizes_by_category[k].modal).join(', ');
+  const palette = (prof.top_colors || []).slice(0, 5).map((c) => c.color).join(', ');
+  const band = prof.price_band || {};
+
+  return '<div class="report" id="c' + n + '">' + head
+    + (r.note ? '<div class="note info">' + esc(r.note) + '</div>' : '')
+    + (paras ? '<div class="summary">' + paras + '</div>' : '')
+    + (chips ? '<div class="chips">' + chips + '</div>' : '')
+    + (wp.flag ? '<div class="flagbox"><strong>Heads up.</strong> ' + esc(wp.flag) + '</div>' : '')
+    + looks
+    + (extras.length ? '<div class="look"><h3>Also worth pulling</h3><div class="grid">'
+        + extras.map((p) => productCard(p)).join('') + '</div></div>' : '')
+    + '<div class="prof">'
+    + (sizes ? '<span>Sizes <b>' + esc(sizes) + '</b></span>' : '')
+    + (palette ? '<span>Palette <b>' + esc(palette) + '</b></span>' : '')
+    + (band.median ? '<span>Typical item <b>$' + band.median + '</b></span>' : '')
+    + '<span>Read from <b>' + (prof.items_seen || 0) + '</b> past items</span></div></div>';
+}
+
+/* ---------------- run, in batches ----------------
+   The edge function rejects more than config.max_customers_per_run per request,
+   so anything larger is split and sent in sequence. Each batch appends as it lands. */
+async function runReport(force) {
+  const ids = Array.from(selected);
+  const chunks = [];
+  for (let i = 0; i < ids.length; i += serverMax) chunks.push(ids.slice(i, i + serverMax));
+
+  $('run').disabled = true;
+  $('reports').innerHTML = '';
+  let done = [], usage = null, budgetTotal = null;
+
+  for (let b = 0; b < chunks.length; b++) {
+    $('prog').style.width = ((b / chunks.length) * 100).toFixed(1) + '%';
+    say($('appMsg'), '<span class="spin"></span>Checking live stock and writing lookbooks &mdash; '
+      + (done.length + chunks[b].length) + ' of ' + ids.length
+      + (chunks.length > 1 ? ' (batch ' + (b + 1) + ' of ' + chunks.length + ')' : '') + '.', 'info');
+    try {
+      const out = await call({ action: 'run', customer_ids: chunks[b], force_refresh: Boolean(force) });
+      done = done.concat(out.reports || []);
+      usage = out.usage; budgetTotal = out.budget_usd;
+      render(done);
+    } catch (e) {
+      say($('appMsg'), esc(e.message) + (done.length ? ' &mdash; showing the ' + done.length + ' already finished.' : ''));
+      $('prog').style.width = '0';
+      $('run').disabled = selected.size === 0;
+      return;
+    }
+  }
+
+  $('prog').style.width = '100%';
+  setTimeout(() => { $('prog').style.width = '0'; }, 700);
+  say($('appMsg'), '');
+  if (usage) budget(usage, budgetTotal);
+  show($('refresh'), true);
+  $('run').disabled = selected.size === 0;
+}
+
+function render(reports) {
+  const nav = reports.length > 1
+    ? '<nav class="jump">' + reports.map((r, i) => '<a href="#c' + i + '">' + esc(r.display_name) + '</a>').join('') + '</nav>'
+    : '';
+  $('reports').innerHTML = nav + reports.map((r, i) => reportCard(r, i)).join('');
+}
+
+$('run').onclick = () => runReport(false);
+$('refresh').onclick = () => runReport(true);
+
+/* ---------------- boot ---------------- */
+async function boot() {
+  const s = await sb.auth.getSession();
+  const session = s.data.session;
+  show($('signinView'), !session);
+  show($('appView'), Boolean(session));
+  if (!session) return;
+  $('whoami').textContent = session.user.email;
+  try {
+    const out = await call({ action: 'customers' });
+    ALL = (out.customers || []).slice().sort((a, b) => b.net_spend_12m - a.net_spend_12m);
+    serverMax = out.max_per_run || 5;
+    budget(out.usage, out.budget_usd);
+    if (!out.ai_enabled) say($('appMsg'),
+      'Write-ups are switched off right now. Product matching still works.', 'info');
+    shown = PAGE;
+    drawList();
+  } catch (e) { say($('appMsg'), esc(e.message)); }
+}
+boot();
+</script>
+</body></html>
