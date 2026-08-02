@@ -64,6 +64,10 @@ input:focus{outline:none;border-color:var(--clay)}
 .site-head .logo{width:210px;display:block}
 .head-right{display:flex;align-items:center;gap:22px;font-size:12px;text-align:right}
 .head-right .who{color:var(--ink);font-weight:600}
+.histbtn{font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--ink);border-radius:3px;background:#fff;color:var(--ink);
+  padding:9px 16px;cursor:pointer;transition:.2s}
+.histbtn:hover{background:var(--clay);border-color:var(--clay);color:#fff}
 .budget{min-width:180px}
 .budget .bar{height:3px;background:var(--cream);margin-top:5px}
 .budget .bar i{display:block;height:100%;background:var(--clay)}
@@ -268,7 +272,7 @@ footer img{width:130px;opacity:.45;display:block;margin:0 auto 14px}
       <img class="logo" alt="Mainstream Boutique"
            src="https://mainstreamboutique.com/cdn/shop/files/MB_Logo_Black-01.png?v=1644766812&width=470">
       <div class="head-right">
-        <button class="link quiet" id="histBtn">History</button>
+        <button class="histbtn" id="histBtn">History</button>
         <div><span class="who" id="whoami"></span><br><button class="link quiet" id="signOut">Sign out</button></div>
         <div class="budget" id="budget"></div>
       </div>
