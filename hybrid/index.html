@@ -216,6 +216,17 @@ a.item:hover{border-color:var(--clay)}
 .why p{margin:0 0 9px}.why p:last-child{margin:0}
 .why strong{color:var(--ink)}
 .stylist{border-left:2px solid var(--clay);padding:11px 16px;margin-top:14px;font-size:12.5px;background:#fff}
+/* ---- history + email pills ---- */
+.pill{display:inline-block;font:600 10px var(--sans);letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--line);color:var(--body);padding:4px 9px;border-radius:2px;white-space:nowrap}
+.pill.on{background:var(--clay);border-color:var(--clay);color:#fff}
+.pillmini{display:inline-block;font:600 9px var(--sans);letter-spacing:.07em;text-transform:uppercase;
+  color:var(--clay);border:1px solid #e8cfc8;background:var(--blush);padding:2px 6px;border-radius:2px;margin-top:3px}
+.hrow{cursor:pointer;transition:.12s}
+.hrow:hover{border-color:var(--clay)}
+.hmeta{display:flex;align-items:center;gap:16px;font-size:12px}
+.hmeta .mdl{color:#a8a09b;font-size:11px}
+.savedbar{margin:24px 0 0}
 .prof{display:flex;gap:28px;flex-wrap:wrap;border-top:1px solid var(--line);
   margin-top:32px;padding-top:18px;font-size:12px}
 .prof b{color:var(--ink);font-weight:700}
@@ -257,6 +268,7 @@ footer img{width:130px;opacity:.45;display:block;margin:0 auto 14px}
       <img class="logo" alt="Mainstream Boutique"
            src="https://mainstreamboutique.com/cdn/shop/files/MB_Logo_Black-01.png?v=1644766812&width=470">
       <div class="head-right">
+        <button class="link quiet" id="histBtn">History</button>
         <div><span class="who" id="whoami"></span><br><button class="link quiet" id="signOut">Sign out</button></div>
         <div class="budget" id="budget"></div>
       </div>
@@ -284,6 +296,14 @@ footer img{width:130px;opacity:.45;display:block;margin:0 auto 14px}
     <div class="progress-list" id="progressList"></div>
     <div class="bsummary"><span id="progressSummary"></span><div class="overall"><i id="overallBar"></i></div></div>
     <p class="bhint">Reports appear as each client finishes.</p>
+  </div>
+
+  <div class="wrap buildwrap hide" id="histView">
+    <div class="listhead">
+      <h2>Lookbook history</h2>
+      <div class="meta"><span id="histMeta"></span> &nbsp;<button class="link" id="histBack">&larr; Back to clients</button></div>
+    </div>
+    <div class="progress-list" id="histList"></div>
   </div>
 
   <div class="wrap" id="listView">
@@ -348,6 +368,13 @@ const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':
 const money = (n) => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
 const show = (el, on) => el.classList.toggle('hide', !on);
 function say(el, text, kind) { el.className = 'note ' + (kind || 'err'); el.innerHTML = text; show(el, Boolean(text)); }
+const fmtDay = (iso) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+const ago = (iso) => {
+  const s = (Date.now() - new Date(iso).getTime()) / 1000;
+  if (s < 3600) return Math.max(1, Math.round(s / 60)) + ' min ago';
+  if (s < 86400) { const h = Math.round(s / 3600); return h + ' hour' + (h === 1 ? '' : 's') + ' ago'; }
+  return fmtDay(iso);
+};
 
 let ALL = [];              // every client the backend returned, spend-sorted
 let shown = PAGE;          // how many rows are revealed
@@ -412,7 +439,8 @@ function drawList() {
       + '<span class="box"></span>'
       + '<span class="rank">#' + c.rank + '</span>'
       + '<span><span class="nm">' + esc(c.display_name || ('Client #' + c.rank)) + '</span>'
-      + (c.email ? '<span class="em">' + esc(c.email) + '</span>' : '') + '</span>'
+      + (c.email ? '<span class="em">' + esc(c.email) + '</span>' : '')
+      + (c.last_emailed_at ? '<span class="pillmini">Emailed ' + fmtDay(c.last_emailed_at) + '</span>' : '') + '</span>'
       + '<span class="num">' + money(c.net_spend_12m) + '</span>'
       + '<span class="num c-orders">' + c.orders_12m + '<small>orders</small></span>'
       + '<span class="num c-items">' + c.units_12m + '<small>items</small></span>'
@@ -488,12 +516,19 @@ function productCard(p, role) {
 
 function reportCard(r, n) {
   const badge = r.source === 'cached' ? '<span class="tag">reused</span>'
-    : r.source === 'generated' ? '<span class="tag fresh">written just now</span>' : '';
+    : r.source === 'generated' ? '<span class="tag fresh">written just now</span>'
+    : r.source === 'saved' ? '<span class="tag">saved &middot; ' + fmtDay(r.generated_at) + '</span>' : '';
+  const email = r.writeup_id
+    ? '<div style="margin-top:8px"><span class="pill' + (r.emailed_at ? ' on' : '') + '" data-pill="' + r.writeup_id + '">'
+      + (r.emailed_at ? 'Emailed ' + fmtDay(r.emailed_at) : 'Not emailed') + '</span> '
+      + '<button class="link" data-mark="' + r.writeup_id + '" data-on="' + (r.emailed_at ? 1 : 0) + '">'
+      + (r.emailed_at ? 'Mark as not emailed' : 'Mark as emailed') + '</button></div>'
+    : '';
   const head = '<div class="rhead"><div>'
     + (r.rank ? '<span class="rk">Rank ' + Number(r.rank) + '</span>' : '')
     + '<h2>' + esc(r.display_name) + '</h2></div><div class="rmeta">'
     + money(r.net_spend_12m) + ' &middot; ' + r.orders_12m + ' orders &middot; '
-    + r.units_12m + ' items &middot; ' + r.discount_pct + '% avg discount' + badge + '</div></div>';
+    + r.units_12m + ' items &middot; ' + r.discount_pct + '% avg discount' + badge + email + '</div></div>';
   if (r.error) return '<div class="report" id="c' + n + '">' + head
     + '<div class="note err">' + esc(r.error) + '</div></div>';
 
@@ -636,6 +671,73 @@ function render(reports) {
 
 $('run').onclick = () => runReport(false);
 $('refresh').onclick = () => runReport(true);
+
+/* ---------------- lookbook history ---------------- */
+function histMode(on) {
+  show($('histView'), on);
+  show($('listView'), !on);
+  show($('intro'), !on);
+  show($('runbar'), !on);
+  $('reports').innerHTML = '';
+  say($('appMsg'), '');
+  window.scrollTo(0, 0);
+}
+$('histBtn').onclick = () => { histMode(true); loadHistory(); };
+$('histBack').onclick = () => histMode(false);
+
+async function loadHistory() {
+  $('histList').innerHTML = '<div class="note info"><span class="spin"></span>Loading history&hellip;</div>';
+  try {
+    const out = await call({ action: 'history' });
+    const rows = out.history || [];
+    $('histMeta').textContent = rows.length + ' lookbook' + (rows.length === 1 ? '' : 's') + ' generated';
+    $('histList').innerHTML = rows.length ? rows.map((w) =>
+      '<article class="progress-card hrow" data-id="' + w.id + '">'
+      + '<div class="progress-header"><div>'
+      + (w.rank ? '<span class="rk2">#' + Number(w.rank) + '</span>' : '')
+      + '<h3>' + esc(w.display_name) + '</h3>'
+      + (w.net_spend_12m != null ? '<span class="sp2">' + money(w.net_spend_12m) + '</span>' : '') + '</div>'
+      + '<div class="hmeta"><span>' + ago(w.created_at) + '</span>'
+      + '<span>' + (Number(w.est_cost_usd) ? '$' + Number(w.est_cost_usd).toFixed(2) : 'reused') + '</span>'
+      + '<span class="mdl">' + esc(w.model || '') + '</span>'
+      + '<span class="pill' + (w.emailed_at ? ' on' : '') + '">'
+      + (w.emailed_at ? 'Emailed ' + fmtDay(w.emailed_at) : 'Not emailed') + '</span></div></div></article>').join('')
+      : '<div class="noresults"><h3>No lookbooks yet</h3><p>Run a report and it will appear here.</p></div>';
+    $('histList').querySelectorAll('.hrow').forEach((a) => { a.onclick = () => openSaved(Number(a.dataset.id)); });
+  } catch (e) { $('histList').innerHTML = ''; say($('appMsg'), esc(e.message)); }
+}
+
+async function openSaved(id) {
+  say($('appMsg'), '<span class="spin"></span>Opening saved lookbook&hellip;', 'info');
+  try {
+    const out = await call({ action: 'get_writeup', writeup_id: id });
+    say($('appMsg'), '');
+    show($('histView'), false);
+    $('reports').innerHTML = '<div class="savedbar"><button class="link" id="backHist">&larr; Back to history</button></div>'
+      + reportCard(out.report, 0);
+    $('backHist').onclick = () => { $('reports').innerHTML = ''; show($('histView'), true); loadHistory(); window.scrollTo(0, 0); };
+    window.scrollTo(0, 0);
+  } catch (e) { say($('appMsg'), esc(e.message)); }
+}
+
+// Mark-as-emailed is delegated so it works on any rendered report card.
+document.addEventListener('click', async (e) => {
+  const b = e.target && e.target.closest ? e.target.closest('[data-mark]') : null;
+  if (!b) return;
+  const id = Number(b.dataset.mark), on = b.dataset.on === '1';
+  b.disabled = true;
+  try {
+    const out = await call({ action: 'mark_emailed', writeup_id: id, emailed: !on });
+    const pill = document.querySelector('[data-pill="' + id + '"]');
+    if (pill) {
+      pill.classList.toggle('on', !on);
+      pill.textContent = !on ? 'Emailed ' + fmtDay(out.emailed_at) : 'Not emailed';
+    }
+    b.dataset.on = on ? '0' : '1';
+    b.textContent = on ? 'Mark as emailed' : 'Mark as not emailed';
+  } catch (err) { say($('appMsg'), esc(err.message)); }
+  b.disabled = false;
+});
 
 /* ---------------- boot ---------------- */
 async function boot() {
