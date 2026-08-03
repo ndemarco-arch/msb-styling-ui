@@ -172,8 +172,10 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none}
 .tag{display:inline-block;font:600 10px var(--sans);letter-spacing:.09em;
   text-transform:uppercase;border:1px solid var(--line);padding:3px 8px;color:var(--body)}
 .tag.fresh{border-color:var(--clay);color:var(--clay)}
+/* Page-level toolbar: lives ABOVE the styling sheet, sticks under the header */
 .lb-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  padding:16px 0;border-bottom:1px solid var(--line)}
+  padding:14px 0;border-bottom:1px solid var(--line);background:#fff;
+  position:sticky;top:73px;z-index:10;margin-top:8px}
 .lb-actions .sp{flex:1}
 .lb-note{font-size:11px;color:#a8a09b;padding:8px 0 0;text-align:right}
 .summary{border-left:2px solid var(--clay);padding:2px 0 2px 22px;margin:26px 0}
@@ -282,6 +284,7 @@ footer img{width:130px;opacity:.45;display:block;margin:0 auto 14px}
   .rmeta{justify-items:start;text-align:left}
   .rhead{display:block}
   .rmeta{margin-top:12px}
+  .lb-actions{position:static}
   .lb-actions .vbtn{padding:9px 11px;font-size:10px}
   .grid{grid-template-columns:repeat(2,1fr);gap:10px}
   .progress-header strong{width:100%;text-align:left}
@@ -701,7 +704,8 @@ function lookbookPage(r, origin) {
     + '</div>'
     + (r.customer_id ? '<div class="lb-note">Refresh &amp; rewrite creates a new version and costs a new generation.</div>' : '');
   const body = r.error ? '<div class="note err">' + esc(r.error) + '</div>' : lookbookBody(r);
-  return '<div class="report">' + head + actions + body + '</div>';
+  // Toolbar sits at the top of the page, OUTSIDE the styling sheet.
+  return actions + '<div class="report">' + head + body + '</div>';
 }
 
 function showLookbook(r, origin) {
